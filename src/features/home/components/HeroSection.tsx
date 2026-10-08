@@ -1,14 +1,29 @@
+import Image from "next/image";
 import { PageContainer } from "@/components/layout/PageContainer";
+import heroMountains from "../../../../public/images/hero/hero-mountains.png";
 import { HeroProjectPreview } from "./HeroProjectPreview";
+import styles from "./HeroSection.module.css";
 
 export function HeroSection() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="flex flex-1 items-center py-16 sm:py-24"
+      className="relative isolate flex flex-1 items-center overflow-hidden py-16 sm:py-24"
     >
+      <div className={styles.landscape} aria-hidden="true">
+        <Image
+          src={heroMountains}
+          alt=""
+          fill
+          sizes="100vw"
+          loading="eager"
+          className={styles.mountains}
+          unoptimized
+        />
+      </div>
+
       <PageContainer>
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+        <div className="relative z-10 grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
             <p className="text-sm font-medium uppercase tracking-widest text-accent">
               Frontendutvecklare · Fullstackkompetens
@@ -29,7 +44,8 @@ export function HeroSection() {
             </p>
           </div>
 
-          <div className="min-w-0">
+          <div className="relative isolate min-w-0">
+            <div className={styles.glow} aria-hidden="true" />
             <HeroProjectPreview />
           </div>
         </div>

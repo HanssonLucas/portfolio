@@ -1,0 +1,44 @@
+.landscape {
+  position: absolute;
+  inset: auto 0 0;
+  height: 65%;
+  pointer-events: none;
+  opacity: 0.7;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 20%,
+    #000 75%,
+    transparent
+  );
+}
+
+.mountains {
+  object-fit: cover;
+  object-position: right bottom;
+}
+
+.glow {
+  position: absolute;
+  z-index: -1;
+  inset: -20%;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    rgb(101 239 196 / 12%) 0%,
+    rgb(101 239 196 / 5%) 40%,
+    transparent 70%
+  );
+}
+
+@media (min-width: 64rem) {
+  .landscape {
+    inset: 0;
+    height: 100%;
+    opacity: 0.85;
+  }
+
+  .glow {
+    inset: -30%;
+  }
+}
