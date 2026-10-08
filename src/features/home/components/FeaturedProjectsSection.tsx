@@ -87,7 +87,7 @@ export function FeaturedProjectsSection() {
                 </ul>{" "}
                 <div className="mt-6">
                   <Link
-                    href={`/projekt/${project.id}`}
+                    href={`/project/${project.id}`}
                     aria-label={`Läs mer om ${project.name}`}
                     className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-accent/30 px-5 py-2.5 text-sm font-medium text-accent transition-colors hover:border-accent/60 hover:bg-accent/10"
                   >

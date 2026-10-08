@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageContainer } from "@/components/layout/PageContainer";
 import type { Project } from "@/features/projects/data/projects";
 import { ProjectGallery } from "./ProjectGallery";
+import { ProjectStory } from "./ProjectStory";
 
 type ProjectDetailsProps = {
   project: Project;
@@ -88,6 +89,7 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
             </ProjectGallery>
           </div>
         </section>
+        <ProjectStory sections={project.details} />
       </PageContainer>
     </main>
   );
