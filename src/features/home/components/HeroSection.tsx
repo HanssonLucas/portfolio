@@ -1,4 +1,5 @@
 import { PageContainer } from "@/components/layout/PageContainer";
+import { HeroProjectPreview } from "./HeroProjectPreview";
 
 export function HeroSection() {
   return (
@@ -27,6 +28,8 @@ export function HeroSection() {
               arbetar med modern webbutveckling.
             </p>
           </div>
+
+          <HeroProjectPreview />
         </div>
       </PageContainer>
     </section>
