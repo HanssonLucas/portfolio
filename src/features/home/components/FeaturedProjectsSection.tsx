@@ -14,6 +14,7 @@ const projects = [
     image: pasdartHome,
     imageAlt:
       "Pasd'Arts startsida med introduktion och möjlighet att skapa en cup.",
+    technologies: ["Next.js", "TypeScript", "Material UI", "PostgreSQL"],
   },
   {
     id: "samspel",
@@ -25,6 +26,7 @@ const projects = [
     image: bookingHome,
     imageAlt:
       "Samspels startsida med rubriken Mer tid för handledning. Mindre bokningskrångel.",
+    technologies: ["Next.js", "TypeScript", "Material UI", "SQLite"],
   },
 ];
 
@@ -88,14 +90,25 @@ export function FeaturedProjectsSection() {
                 >
                   {project.name}
                 </h3>
-
                 <p className="mt-2 text-xs font-medium uppercase tracking-wider text-accent">
                   {project.category}
                 </p>
-
                 <p className="mt-3 text-sm leading-relaxed text-muted">
                   {project.description}
                 </p>
+                <ul
+                  aria-label={`Teknik i ${project.name}`}
+                  className="mt-5 flex flex-wrap gap-2"
+                >
+                  {project.technologies.map((technology) => (
+                    <li
+                      key={technology}
+                      className="rounded-md border border-border bg-background/50 px-2.5 py-1 text-xs text-muted"
+                    >
+                      {technology}
+                    </li>
+                  ))}
+                </ul>{" "}
               </div>
             </article>
           ))}
