@@ -46,15 +46,17 @@ export function HeroSection() {
             <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href="#projects"
-                className="inline-flex min-h-12 items-center justify-center rounded-lg border border-accent/40 bg-background/70 px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-surface"
+                className="inline-flex min-h-12 items-center justify-center gap-3 rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground transition-colors hover:bg-accent/90"
               >
                 Se mina projekt
+                <span aria-hidden="true">→</span>
               </a>
+
               <a
-                href="mailto:lucas.hansson9@gmail.com"
-                className="inline-flex min-h-12 items-center justify-center rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground transition-colors hover:bg-accent/90"
+                href="#about"
+                className="inline-flex min-h-12 items-center justify-center rounded-lg border border-accent/70 bg-background/70 px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-surface"
               >
-                Kontakta mig
+                Läs mer om mig
               </a>
             </div>
           </div>
