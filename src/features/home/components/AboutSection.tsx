@@ -6,14 +6,17 @@ const highlights = [
   {
     title: "Struktur",
     description: "Jag gillar ordning och genomtänkta lösningar.",
+    iconPath: "M4 4h6v6H4z M14 4h6v6h-6z M4 14h6v6H4z M14 14h6v6h-6z",
   },
   {
     title: "Utveckling",
     description: "Alltid nyfiken på att lära mig mer.",
+    iconPath: "m8 7-5 5 5 5 M16 7l5 5-5 5 M14 4l-4 16",
   },
   {
     title: "Balans",
     description: "Teknik, natur och ett aktivt liv.",
+    iconPath: "M12 3v18 M5 7h14 M5 7l-3 7h6L5 7Z M19 7l-3 7h6l-3-7Z M8 21h8",
   },
 ];
 
@@ -86,12 +89,34 @@ export function AboutSection() {
 
             <dl className="mt-8 grid gap-6 sm:grid-cols-3">
               {highlights.map((highlight) => (
-                <div key={highlight.title}>
-                  <dt className="font-medium text-foreground">
-                    {highlight.title}
+                <div
+                  key={highlight.title}
+                  className="grid grid-cols-[2rem_minmax(0,1fr)] content-start items-start gap-x-3 gap-y-2"
+                >
+                  <dt className="col-span-2 grid grid-cols-subgrid items-center">
+                    <span
+                      aria-hidden="true"
+                      className="flex size-8 items-center justify-center rounded-full border border-accent/60 text-accent"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="size-4"
+                      >
+                        <path d={highlight.iconPath} />
+                      </svg>
+                    </span>
+
+                    <span className="font-medium text-foreground">
+                      {highlight.title}
+                    </span>
                   </dt>
 
-                  <dd className="mt-2 text-sm leading-relaxed text-muted">
+                  <dd className="col-start-2 text-sm leading-relaxed text-muted">
                     {highlight.description}
                   </dd>
                 </div>
