@@ -29,7 +29,9 @@ export function HeroSection() {
             </p>
           </div>
 
-          <HeroProjectPreview />
+          <div className="min-w-0">
+            <HeroProjectPreview />
+          </div>
         </div>
       </PageContainer>
     </section>
