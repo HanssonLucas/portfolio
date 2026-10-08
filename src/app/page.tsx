@@ -1,7 +1,9 @@
+import { PageContainer } from "@/components/layout/PageContainer";
+
 export default function Home() {
   return (
-    <main className="flex flex-1 items-center px-6 py-24">
-      <div className="mx-auto w-full max-w-6xl">
+    <main className="flex flex-1 items-center py-24">
+      <PageContainer>
         <p className="text-sm font-medium uppercase tracking-widest text-accent">
           Lucas Hansson
         </p>
@@ -13,7 +15,7 @@ export default function Home() {
         <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
           Här samlar jag mina projekt och erfarenheter inom webbutveckling.
         </p>
-      </div>
+      </PageContainer>
     </main>
   );
 }
