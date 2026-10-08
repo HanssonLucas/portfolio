@@ -8,7 +8,7 @@ export function HeroSection() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative isolate flex flex-1 items-center overflow-hidden py-16 sm:py-24"
+      className="relative isolate flex min-h-[calc(100svh-5rem)] items-center overflow-hidden py-16 sm:min-h-[calc(100svh-6rem)] sm:py-24"
     >
       <div className={styles.landscape} aria-hidden="true">
         <Image
@@ -44,6 +44,12 @@ export function HeroSection() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href="#projects"
+                className="inline-flex min-h-12 items-center justify-center rounded-lg border border-accent/40 bg-background/70 px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-surface"
+              >
+                Se mina projekt
+              </a>
               <a
                 href="mailto:lucas.hansson9@gmail.com"
                 className="inline-flex min-h-12 items-center justify-center rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground transition-colors hover:bg-accent/90"
