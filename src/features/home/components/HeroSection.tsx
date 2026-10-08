@@ -42,6 +42,15 @@ export function HeroSection() {
               Här visar jag projekt jag byggt, erfarenheter jag fått och hur jag
               arbetar med modern webbutveckling.
             </p>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href="mailto:lucas.hansson9@gmail.com"
+                className="inline-flex min-h-12 items-center justify-center rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground transition-colors hover:bg-accent/90"
+              >
+                Kontakta mig
+              </a>
+            </div>
           </div>
 
           <div className="relative isolate min-w-0">
