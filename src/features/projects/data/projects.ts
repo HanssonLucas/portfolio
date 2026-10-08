@@ -81,3 +81,4 @@ export const projects = [
     ],
   },
 ];
+export type Project = (typeof projects)[number];

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { ProjectGallery } from "@/features/projects/components/ProjectGallery";
 import { projects } from "@/features/projects/data/projects";
@@ -84,6 +85,16 @@ export function FeaturedProjectsSection() {
                     </li>
                   ))}
                 </ul>{" "}
+                <div className="mt-6">
+                  <Link
+                    href={`/projekt/${project.id}`}
+                    aria-label={`Läs mer om ${project.name}`}
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-accent/30 px-5 py-2.5 text-sm font-medium text-accent transition-colors hover:border-accent/60 hover:bg-accent/10"
+                  >
+                    Läs mer
+                    <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
               </div>
             </article>
           ))}
