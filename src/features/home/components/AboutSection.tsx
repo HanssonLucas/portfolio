@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { PageContainer } from "@/components/layout/PageContainer";
 import lucasPhoto from "../../../../public/images/about/lucas-waterfall.jpg";
+import { ImageGallery } from "@/components/ui/ImageGallery";
+import { personalPhotos } from "@/features/about/data/photos";
 
 const highlights = [
   {
@@ -47,15 +49,24 @@ export function AboutSection() {
               className="absolute inset-0 -z-10 translate-y-2 -rotate-3 rounded-2xl border border-accent/25 bg-surface"
             />
 
-            <div className="relative aspect-4/3 overflow-hidden rounded-2xl border border-border">
-              <Image
-                src={lucasPhoto}
-                alt="Lucas fotograferar vid ett vattenfall."
-                fill
-                sizes="(min-width: 1152px) 475px, (min-width: 1024px) 42vw, (min-width: 640px) 512px, 100vw"
-                className="object-cover"
-              />
-            </div>
+            <ImageGallery
+              name="Genom min kamera"
+              images={personalPhotos}
+              eyebrow="Foto och fritid"
+              triggerLabel="Visa mina foton"
+              variant="photo"
+              unoptimized={false}
+            >
+              <div className="relative aspect-4/3 overflow-hidden rounded-2xl border border-border">
+                <Image
+                  src={lucasPhoto}
+                  alt="Lucas fotograferar vid ett vattenfall."
+                  fill
+                  sizes="(min-width: 1152px) 475px, (min-width: 1024px) 42vw, (min-width: 640px) 512px, 100vw"
+                  className="object-cover"
+                />
+              </div>
+            </ImageGallery>
           </div>
 
           <div>
