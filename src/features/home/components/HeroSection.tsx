@@ -7,6 +7,7 @@ import styles from "./HeroSection.module.css";
 export function HeroSection() {
   return (
     <section
+      id="home"
       aria-labelledby="hero-heading"
       className="relative isolate flex min-h-[calc(100svh-5rem)] items-center overflow-hidden py-16 sm:min-h-[calc(100svh-6rem)] sm:py-24"
     >
