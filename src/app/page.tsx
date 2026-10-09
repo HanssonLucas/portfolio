@@ -3,6 +3,7 @@ import { FeaturedProjectsSection } from "@/features/home/components/FeaturedProj
 import { HeroSection } from "@/features/home/components/HeroSection";
 import { ExperienceSection } from "@/features/home/components/ExperienceSection";
 import { HomeBackdrop } from "@/features/home/components/HomeBackdrop";
+import { ContactSection } from "@/features/home/components/ContactSection";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <AboutSection />
       <HomeBackdrop>
         <ExperienceSection />
+        <ContactSection />
       </HomeBackdrop>
     </main>
   );
