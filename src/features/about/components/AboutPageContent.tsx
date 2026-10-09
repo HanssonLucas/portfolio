@@ -1,10 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { PageContainer } from "@/components/layout/PageContainer";
-import { aboutSections } from "../data/about";
+import { localizedHref, type Locale } from "@/i18n/config";
+import { aboutMessages } from "@/i18n/about";
 import lucasPhoto from "../../../../public/images/about/lucas-waterfall.jpg";
 
-export function AboutPageContent() {
+type AboutPageContentProps = {
+  locale?: Locale;
+};
+
+export function AboutPageContent({ locale = "sv" }: AboutPageContentProps) {
+  const text = aboutMessages[locale];
+
   return (
     <main className="relative isolate flex-1 overflow-clip pb-20 pt-10 sm:pb-28 sm:pt-16">
       <div
@@ -14,7 +21,7 @@ export function AboutPageContent() {
 
       <PageContainer>
         <Link
-          href="/#about"
+          href={`${localizedHref(locale)}#about`}
           className="inline-flex min-h-11 items-center gap-2 rounded text-sm text-muted transition-colors hover:text-accent"
         >
           <svg
@@ -29,26 +36,22 @@ export function AboutPageContent() {
           >
             <path d="M19 12H5m5-5-5 5 5 5" />
           </svg>
-          Tillbaka till startsidan
+          {text.backToHome}
         </Link>
 
         <header className="mt-8 grid items-center gap-10 lg:mt-12 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
           <div>
             <p className="text-xs font-medium uppercase tracking-widest text-accent">
-              Min bakgrund
+              {text.eyebrow}
             </p>
 
             <h1 className="mt-4 text-3xl font-semibold leading-tight tracking-tight sm:text-5xl">
-              Jag vill förstå hur saker fungerar — och{" "}
-              <span className="text-accent">se vad jag kan skapa.</span>
+              {text.heading}{" "}
+              <span className="text-accent">{text.headingAccent}</span>
             </h1>
 
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-              Jag heter Lucas Hansson och är frontendutvecklare med
-              fullstackkompetens. Min väg hit började med montering, service och
-              teknisk dokumentation. Intresset för att skapa saker har däremot
-              funnits länge, från film och videoredigering till de
-              webbapplikationer jag bygger idag.
+              {text.introduction}
             </p>
           </div>
 
@@ -60,7 +63,7 @@ export function AboutPageContent() {
 
             <Image
               src={lucasPhoto}
-              alt="Lucas fotograferar vid ett vattenfall."
+              alt={text.imageAlt}
               className="aspect-4/3 w-full rounded-2xl border border-border object-cover"
               sizes="(min-width: 1024px) 420px, (min-width: 640px) 448px, calc(100vw - 48px)"
               loading="eager"
@@ -69,7 +72,7 @@ export function AboutPageContent() {
         </header>
 
         <div className="mt-16 space-y-6 sm:mt-24">
-          {aboutSections.map((section, index) => (
+          {text.sections.map((section, index) => (
             <section
               key={section.id}
               aria-labelledby={`about-${section.id}`}
@@ -109,30 +112,20 @@ export function AboutPageContent() {
           className="mt-12 rounded-2xl border border-accent/25 bg-surface p-6 sm:mt-16 sm:p-10"
         >
           <p className="text-xs font-medium uppercase tracking-widest text-accent">
-            Nästa steg
+            {text.nextStep.eyebrow}
           </p>
 
           <h2
             id="about-next-step"
             className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl"
           >
-            Det jag söker nu
+            {text.nextStep.heading}
           </h2>
 
           <div className="mt-5 max-w-2xl space-y-4 text-base leading-7 text-muted">
-            <p>
-              Nu söker jag min första utvecklarroll, gärna med fokus på frontend
-              och möjlighet att fortsätta arbeta med backend. Jag vill bidra med
-              det jag redan kan, komma med egna idéer och lära mig av kollegor
-              med andra erfarenheter.
-            </p>
-
-            <p>
-              Jag tycker om att förstå varför en lösning fungerar och kan gärna
-              fastna i detaljer för att få grepp om något nytt. Det var viljan
-              att fortsätta lära mig som fick mig att byta yrke, och den är
-              fortfarande en stor del av det som driver mig.
-            </p>
+            {text.nextStep.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
 
           <div className="mt-7 flex flex-wrap gap-3">
@@ -140,17 +133,17 @@ export function AboutPageContent() {
               href="mailto:lucas.hansson9@gmail.com"
               className="inline-flex min-h-12 items-center justify-center rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground transition-colors hover:bg-accent/90"
             >
-              Hör av dig
+              {text.nextStep.contact}
             </a>
 
             <a
               href="/documents/lucas-hansson-cv.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Öppna mitt CV som PDF i en ny flik"
+              aria-label={text.nextStep.cvLabel}
               className="inline-flex min-h-12 items-center justify-center rounded-lg border border-accent/30 px-5 py-3 text-sm font-medium text-foreground transition-colors hover:border-accent hover:bg-accent/5"
             >
-              Öppna mitt CV
+              {text.nextStep.cv}
             </a>
           </div>
         </section>

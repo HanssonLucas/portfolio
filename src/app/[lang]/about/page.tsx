@@ -1,12 +1,34 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { AboutPageContent } from "@/features/about/components/AboutPageContent";
+import { isLocale } from "@/i18n/config";
+import { aboutMessages } from "@/i18n/about";
 
-export const metadata: Metadata = {
-  title: "Om mig | Lucas Hansson",
-  description:
-    "Min väg från montering och filmredigering till frontendutveckling. Läs om min bakgrund, utbildning och hur jag fungerar i ett team.",
+type AboutPageProps = {
+  params: Promise<{ lang: string }>;
 };
 
-export default function AboutPage() {
-  return <AboutPageContent />;
+export async function generateMetadata({
+  params,
+}: AboutPageProps): Promise<Metadata> {
+  const { lang } = await params;
+
+  if (!isLocale(lang)) {
+    notFound();
+  }
+
+  return {
+    title: aboutMessages[lang].metadata.title,
+    description: aboutMessages[lang].metadata.description,
+  };
+}
+
+export default async function AboutPage({ params }: AboutPageProps) {
+  const { lang } = await params;
+
+  if (!isLocale(lang)) {
+    notFound();
+  }
+
+  return <AboutPageContent locale={lang} />;
 }
