@@ -1,8 +1,16 @@
 import { PageContainer } from "@/components/layout/PageContainer";
+import type { Locale } from "@/i18n/config";
+import { contactMessages } from "@/i18n/contact";
 
 const email = "lucas.hansson9@gmail.com";
 
-export function ContactSection() {
+type ContactSectionProps = {
+  locale?: Locale;
+};
+
+export function ContactSection({ locale = "sv" }: ContactSectionProps) {
+  const text = contactMessages[locale];
+
   return (
     <section
       id="contact"
@@ -21,7 +29,7 @@ export function ContactSection() {
               </span>
 
               <p className="text-sm font-medium uppercase tracking-widest">
-                Hör av dig
+                {text.sectionLabel}
               </p>
 
               <span
@@ -34,12 +42,11 @@ export function ContactSection() {
               id="contact-heading"
               className="mt-6 text-3xl font-semibold tracking-tight sm:text-4xl"
             >
-              Låt oss ta nästa steg.
+              {text.heading}
             </h2>
 
             <p className="mt-4 max-w-md text-base leading-relaxed text-muted">
-              Har du ett spännande projekt, en jobbmöjlighet eller bara vill
-              säga hej? Tveka inte att höra av dig!
+              {text.description}
             </p>
 
             <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
@@ -47,7 +54,8 @@ export function ContactSection() {
                 href={`mailto:${email}`}
                 className="inline-flex min-h-12 items-center justify-center gap-3 rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground transition-colors hover:bg-accent/90"
               >
-                Skicka ett mejl
+                {text.sendEmail}
+
                 <svg
                   aria-hidden="true"
                   focusable="false"
@@ -67,7 +75,7 @@ export function ContactSection() {
                 href="https://www.linkedin.com/in/lucas-hansson-0b0361176/"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Lucas Hansson på LinkedIn, öppnas i en ny flik"
+                aria-label={text.linkedInLabel}
                 className="inline-flex min-h-11 items-center gap-2 rounded text-sm text-foreground transition-colors hover:text-accent"
               >
                 <svg
@@ -86,7 +94,7 @@ export function ContactSection() {
                 href="https://github.com/HanssonLucas"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Lucas Hansson på GitHub, öppnas i en ny flik"
+                aria-label={text.githubLabel}
                 className="inline-flex min-h-11 items-center gap-2 rounded text-sm text-foreground transition-colors hover:text-accent"
               >
                 <svg
@@ -140,14 +148,11 @@ export function ContactSection() {
                   id="availability-heading"
                   className="text-base font-semibold"
                 >
-                  Öppen för nya möjligheter
+                  {text.availabilityHeading}
                 </h3>
 
                 <p className="mt-3 text-sm leading-relaxed text-muted">
-                  Jag gillar när kod blir något man faktiskt har nytta av,
-                  oavsett om det gör en dartkväll enklare eller hjälper en klass
-                  att boka handledning. Nu söker jag ett team där jag kan bidra
-                  med egna idéer, lära av andra och bygga vidare på den känslan.
+                  {text.availabilityDescription}
                 </p>
               </div>
             </div>

@@ -25,7 +25,7 @@ export default async function Home({ params }: HomePageProps) {
       <AboutSection locale={lang} />
       <HomeBackdrop>
         <ExperienceSection locale={lang} />
-        <ContactSection />
+        <ContactSection locale={lang} />
       </HomeBackdrop>
     </main>
   );
