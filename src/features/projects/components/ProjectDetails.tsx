@@ -2,29 +2,49 @@ import Image from "next/image";
 import Link from "next/link";
 import { PageContainer } from "@/components/layout/PageContainer";
 import type { Project } from "@/features/projects/data/projects";
+import { localizedHref, type Locale } from "@/i18n/config";
+import { projectDetailsMessages } from "@/i18n/projectDetails";
+import { projectsMessages } from "@/i18n/projects";
 import { ProjectGallery } from "./ProjectGallery";
 import { ProjectStory } from "./ProjectStory";
 import { ProjectLinks } from "./ProjectLinks";
 
 type ProjectDetailsProps = {
   project: Project;
+  locale?: Locale;
 };
 
-export function ProjectDetails({ project }: ProjectDetailsProps) {
+export function ProjectDetails({
+  project,
+  locale = "sv",
+}: ProjectDetailsProps) {
+  const text = projectDetailsMessages[locale];
+  const projectText = projectsMessages[locale];
+
+  const translation =
+    project.id === "pasdart" || project.id === "samspel"
+      ? projectText.items[project.id]
+      : undefined;
+
+  const gallery = project.gallery.map((image) => ({
+    ...image,
+    ...translation?.gallery[image.src],
+  }));
+
   return (
     <main className="flex-1 py-10 sm:py-16">
       <PageContainer>
         <Link
-          href="/#projects"
+          href={`${localizedHref(locale)}#projects`}
           className="inline-flex min-h-11 items-center gap-2 rounded text-sm text-muted transition-colors hover:text-accent"
         >
           <span aria-hidden="true">←</span>
-          Tillbaka till projekten
+          {text.backToProjects}
         </Link>
 
         <header className="mt-8 sm:mt-12">
           <p className="text-xs font-medium uppercase tracking-widest text-accent">
-            {project.category}
+            {translation?.category ?? project.category}
           </p>
 
           <div className="mt-4 flex flex-wrap items-center gap-4">
@@ -37,16 +57,16 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
                 aria-hidden="true"
                 className="size-1.5 rounded-full bg-accent"
               />
-              {project.status}
+              {translation?.status ?? project.status}
             </span>
           </div>
 
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
-            {project.description}
+            {translation?.description ?? project.description}
           </p>
 
           <ul
-            aria-label={`Teknik i ${project.name}`}
+            aria-label={`${projectText.technologies} ${project.name}`}
             className="mt-6 flex flex-wrap gap-2"
           >
             {project.technologies.map((technology) => (
@@ -58,8 +78,13 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
               </li>
             ))}
           </ul>
+
           <div className="mt-6">
-            <ProjectLinks name={project.name} links={project.links} />
+            <ProjectLinks
+              name={project.name}
+              links={project.links}
+              locale={locale}
+            />
           </div>
         </header>
 
@@ -72,19 +97,21 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
               id="project-images-heading"
               className="text-sm font-medium uppercase tracking-widest"
             >
-              Bilder från projektet
+              {text.projectImages}
             </h2>
 
-            <p className="text-sm text-muted">
-              Klicka på bilden för att öppna galleriet
-            </p>
+            <p className="text-sm text-muted">{text.openGalleryHint}</p>
           </div>
 
           <div className="overflow-hidden rounded-2xl border border-accent/20 bg-surface">
-            <ProjectGallery name={project.name} images={project.gallery}>
+            <ProjectGallery
+              name={project.name}
+              images={gallery}
+              locale={locale}
+            >
               <Image
                 src={project.image}
-                alt={project.imageAlt}
+                alt={translation?.imageAlt ?? project.imageAlt}
                 className="block h-auto w-full"
                 sizes="(min-width: 1152px) 1104px, calc(100vw - 48px)"
                 loading="eager"
@@ -93,7 +120,8 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
             </ProjectGallery>
           </div>
         </section>
-        <ProjectStory sections={project.details} />
+
+        <ProjectStory projectId={project.id} locale={locale} />
       </PageContainer>
     </main>
   );

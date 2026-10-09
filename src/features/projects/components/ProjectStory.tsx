@@ -1,24 +1,35 @@
 import type { Project } from "@/features/projects/data/projects";
+import type { Locale } from "@/i18n/config";
+import { projectStoryMessages } from "@/i18n/projectStory";
 
 type ProjectStoryProps = {
-  sections: Project["details"];
+  projectId: Project["id"];
+  locale: Locale;
 };
 
-export function ProjectStory({ sections }: ProjectStoryProps) {
+export function ProjectStory({ projectId, locale }: ProjectStoryProps) {
+  const text = projectStoryMessages[locale];
+
+  if (projectId !== "pasdart" && projectId !== "samspel") {
+    return null;
+  }
+
+  const sections = text.items[projectId];
+
   if (sections.length === 0) return null;
 
   return (
     <section aria-labelledby="project-story-heading" className="mt-16 sm:mt-24">
       <div className="mb-8">
         <p className="text-xs font-medium uppercase tracking-widest text-accent">
-          Bakom projektet
+          {text.eyebrow}
         </p>
 
         <h2
           id="project-story-heading"
           className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl"
         >
-          Från idé till verklighet.
+          {text.heading}
         </h2>
       </div>
 
