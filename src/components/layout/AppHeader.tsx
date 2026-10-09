@@ -131,6 +131,21 @@ export function AppHeader() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <a
+                  href="/documents/lucas-hansson-cv.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Öppna mitt CV som PDF i en ny flik"
+                  className="group relative inline-flex min-h-11 items-center rounded text-sm text-foreground transition-colors hover:text-accent"
+                >
+                  CV
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-x-0 bottom-1 h-px origin-left scale-x-0 bg-accent transition-transform group-hover:scale-x-100 group-focus-visible:scale-x-100 motion-reduce:transition-none"
+                  />
+                </a>
+              </li>
             </ul>
           </nav>
 
@@ -194,6 +209,18 @@ export function AppHeader() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <a
+                  href="/documents/lucas-hansson-cv.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={closeMenu}
+                  aria-label="Öppna mitt CV som PDF i en ny flik"
+                  className="flex min-h-12 items-center rounded-lg px-3 text-sm text-foreground transition-colors hover:bg-surface hover:text-accent"
+                >
+                  CV
+                </a>
+              </li>
             </ul>
 
             <Link

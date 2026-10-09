@@ -38,25 +38,50 @@ export function ExperienceSection() {
       className="scroll-mt-8 border-t border-border/50 pb-20 pt-10 sm:pb-28 sm:pt-12"
     >
       <PageContainer>
-        <div className="flex items-center gap-4">
-          <span
-            aria-hidden="true"
-            className="flex size-7 shrink-0 items-center justify-center rounded-lg border border-border text-xs text-accent"
-          >
-            03
-          </span>
+        <div className="flex flex-wrap items-center justify-between gap-6">
+          <div className="flex items-center gap-4">
+            <span
+              aria-hidden="true"
+              className="flex size-7 shrink-0 items-center justify-center rounded-lg border border-border text-xs text-accent"
+            >
+              03
+            </span>
 
-          <h2
-            id="experience-heading"
-            className="text-sm font-medium uppercase tracking-widest"
-          >
-            Erfarenhet & utbildning
-          </h2>
+            <h2
+              id="experience-heading"
+              className="text-sm font-medium uppercase tracking-widest"
+            >
+              Erfarenhet & utbildning
+            </h2>
 
-          <span
-            aria-hidden="true"
-            className="hidden h-px w-16 bg-border sm:block"
-          />
+            <span
+              aria-hidden="true"
+              className="hidden h-px w-16 bg-border sm:block"
+            />
+          </div>
+
+          <a
+            href="/documents/lucas-hansson-cv.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Läs mer om min bakgrund i mitt CV, PDF i en ny flik"
+            className="inline-flex min-h-11 items-center justify-center gap-3 rounded-full border border-accent/40 px-5 py-2 text-sm font-medium text-foreground transition-colors hover:border-accent hover:bg-accent/5"
+          >
+            Läs mer om min bakgrund
+            <svg
+              aria-hidden="true"
+              focusable="false"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.75"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="size-4 shrink-0 text-accent"
+            >
+              <path d="M5 12h14m-5-5 5 5-5 5" />
+            </svg>
+          </a>
         </div>
 
         <div className="relative mt-14 lg:mt-20 lg:translate-x-6">
