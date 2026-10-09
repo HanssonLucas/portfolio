@@ -1,37 +1,30 @@
-import { PageContainer } from "@/components/layout/PageContainer";
 import Link from "next/link";
+import { PageContainer } from "@/components/layout/PageContainer";
+import { localizedHref, type Locale } from "@/i18n/config";
+import { experienceMessages } from "@/i18n/experience";
 
 const experiences = [
   {
     id: "hitract",
-    period: "Nov 2025 – Maj 2026",
-    title: "Hitract",
-    role: "Frontendutvecklare · LIA",
-    description:
-      "Under min LIA arbetade jag med React och Next.js i en större kodbas. Jag utvecklade komponenter och gränssnitt tillsammans med teamet och fick erfarenhet av att bygga vidare på en befintlig produkt.",
     technologies: ["React", "Next.js", "TypeScript", "Material UI"],
   },
   {
     id: "education",
-    period: "Aug 2024 – Jun 2026",
-    title: "EC Utbildning",
-    role: "Frontendutveckling med fullstackkompetens",
-    description:
-      "Tvåårig utbildning där jag arbetade med frontend, backend, databaser och UX. Jag avslutade utbildningen med högsta betyg på mitt examensarbete, bokningssystemet Samspel.",
     technologies: ["JavaScript", "TypeScript", "React", "C# / .NET"],
   },
   {
     id: "personal-projects",
-    period: "Maj 2026 – Nu",
-    title: "Personliga projekt",
-    role: "Pasd’Art & Samspel",
-    description:
-      "Jag fortsätter utveckla två egna projekt med fokus på behov jag själv har mött. Här arbetar jag med hela flödet, från design och gränssnitt till backend och databas.",
     technologies: ["Next.js", "TypeScript", "PostgreSQL", "SQLite"],
   },
-];
+] as const;
 
-export function ExperienceSection() {
+type ExperienceSectionProps = {
+  locale?: Locale;
+};
+
+export function ExperienceSection({ locale = "sv" }: ExperienceSectionProps) {
+  const text = experienceMessages[locale];
+
   return (
     <section
       id="experience"
@@ -52,7 +45,7 @@ export function ExperienceSection() {
               id="experience-heading"
               className="text-sm font-medium uppercase tracking-widest"
             >
-              Erfarenhet & utbildning
+              {text.heading}
             </h2>
 
             <span
@@ -62,10 +55,11 @@ export function ExperienceSection() {
           </div>
 
           <Link
-            href="/about"
+            href={localizedHref(locale, "/about")}
             className="inline-flex min-h-11 items-center justify-center gap-3 rounded-full border border-accent/40 px-5 py-2 text-sm font-medium text-foreground transition-colors hover:border-accent hover:bg-accent/5"
           >
-            Läs mer om min bakgrund
+            {text.readMore}
+
             <svg
               aria-hidden="true"
               focusable="false"
@@ -89,56 +83,63 @@ export function ExperienceSection() {
           />
 
           <ol className="grid lg:grid-cols-3 lg:gap-12">
-            {experiences.map((experience) => (
-              <li
-                key={experience.id}
-                className="relative min-w-0 pb-12 pl-9 last:pb-0 lg:flex lg:flex-col lg:pb-0 lg:pl-0"
-              >
-                <span
-                  aria-hidden="true"
-                  className="absolute bottom-0 left-2 top-2 w-px bg-border lg:hidden"
-                />
+            {experiences.map((experience) => {
+              const item = text.items[experience.id];
 
-                <span
-                  aria-hidden="true"
-                  className="absolute left-0 top-0 z-10 flex size-4 items-center justify-center rounded-full border border-accent bg-background shadow-[0_0_14px_#65efc420]"
+              return (
+                <li
+                  key={experience.id}
+                  className="relative min-w-0 pb-12 pl-9 last:pb-0 lg:flex lg:flex-col lg:pb-0 lg:pl-0"
                 >
-                  <span className="size-2 rounded-full bg-accent" />
-                </span>
+                  <span
+                    aria-hidden="true"
+                    className="absolute bottom-0 left-2 top-2 w-px bg-border lg:hidden"
+                  />
 
-                <p className="relative w-fit bg-background pr-3 text-xs leading-4 text-muted lg:ml-7 lg:px-2">
-                  {experience.period}
-                </p>
-
-                <div className="mt-7 flex flex-1 flex-col lg:mt-9">
-                  <h3 className="text-xl font-semibold tracking-tight">
-                    {experience.title}
-                  </h3>
-
-                  <p className="mt-2 text-sm leading-relaxed text-foreground lg:min-h-12">
-                    {experience.role}
-                  </p>
-
-                  <p className="mt-4 max-w-md text-sm leading-7 text-muted">
-                    {experience.description}
-                  </p>
-
-                  <ul
-                    aria-label={`Teknik och kunskaper – ${experience.title}`}
-                    className="mt-auto flex flex-wrap gap-2 pt-6"
+                  <span
+                    aria-hidden="true"
+                    className="absolute left-0 top-0 z-10 flex size-4 items-center justify-center rounded-full border border-accent bg-background shadow-[0_0_14px_#65efc420]"
                   >
-                    {experience.technologies.map((technology) => (
-                      <li
-                        key={technology}
-                        className="rounded-md border border-border bg-background/70 px-2.5 py-1 text-xs text-muted"
-                      >
-                        {technology}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </li>
-            ))}
+                    <span className="size-2 rounded-full bg-accent" />
+                  </span>
+
+                  <p className="relative w-fit bg-background pr-3 text-xs leading-4 text-muted lg:ml-7 lg:px-2">
+                    {item.period}
+                  </p>
+
+                  <div className="mt-7 flex flex-1 flex-col lg:mt-9">
+                    <h3 className="text-xl font-semibold tracking-tight">
+                      {item.title}
+                    </h3>
+
+                    <p className="mt-2 text-sm leading-relaxed text-foreground lg:min-h-12">
+                      {item.role}
+                    </p>
+
+                    <p className="mt-4 max-w-md text-sm leading-7 text-muted">
+                      {item.description}
+                    </p>
+
+                    <ul
+                      aria-label={text.technologiesLabel.replace(
+                        "{name}",
+                        item.title,
+                      )}
+                      className="mt-auto flex flex-wrap gap-2 pt-6"
+                    >
+                      {experience.technologies.map((technology) => (
+                        <li
+                          key={technology}
+                          className="rounded-md border border-border bg-background/70 px-2.5 py-1 text-xs text-muted"
+                        >
+                          {technology}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </li>
+              );
+            })}
           </ol>
         </div>
       </PageContainer>
