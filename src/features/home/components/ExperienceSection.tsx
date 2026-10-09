@@ -1,4 +1,5 @@
 import { PageContainer } from "@/components/layout/PageContainer";
+import Link from "next/link";
 
 const experiences = [
   {
@@ -60,11 +61,8 @@ export function ExperienceSection() {
             />
           </div>
 
-          <a
-            href="/documents/lucas-hansson-cv.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Läs mer om min bakgrund i mitt CV, PDF i en ny flik"
+          <Link
+            href="/about"
             className="inline-flex min-h-11 items-center justify-center gap-3 rounded-full border border-accent/40 px-5 py-2 text-sm font-medium text-foreground transition-colors hover:border-accent hover:bg-accent/5"
           >
             Läs mer om min bakgrund
@@ -81,7 +79,7 @@ export function ExperienceSection() {
             >
               <path d="M5 12h14m-5-5 5 5-5 5" />
             </svg>
-          </a>
+          </Link>
         </div>
 
         <div className="relative mt-14 lg:mt-20 lg:translate-x-6">
