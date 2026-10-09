@@ -1,0 +1,87 @@
+.wrapper {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  background: var(--background);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+.mountains {
+  position: absolute;
+  inset: auto 0 0;
+  height: min(100%, 54rem);
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      to right,
+      var(--background) 0%,
+      #07110ee6 30%,
+      #07110e80 65%,
+      #07110e26 100%
+    ),
+    url("/images/backgrounds/lower-mountains.png");
+  background-position:
+    center,
+    right bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 30%, #000 100%);
+
+  opacity: 0.8;
+}
+
+.glowLeft,
+.glowRight {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+.glowLeft {
+  top: 3rem;
+  left: -16rem;
+  width: 40rem;
+  height: 32rem;
+  background: radial-gradient(
+    ellipse,
+    #65efc410 0%,
+    #65efc406 40%,
+    transparent 70%
+  );
+}
+
+.glowRight {
+  top: 14rem;
+  right: -12rem;
+  width: 42rem;
+  height: 34rem;
+  background: radial-gradient(
+    ellipse,
+    #65efc41a 0%,
+    #65efc408 40%,
+    transparent 70%
+  );
+}
+
+@media (max-width: 63.999rem) {
+  .mountains {
+    height: 36rem;
+    opacity: 0.45;
+  }
+
+  .glowLeft {
+    opacity: 0.6;
+  }
+
+  .glowRight {
+    top: auto;
+    bottom: 0;
+    opacity: 0.65;
+  }
+}

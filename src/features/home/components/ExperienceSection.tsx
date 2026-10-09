@@ -35,7 +35,7 @@ export function ExperienceSection() {
     <section
       id="experience"
       aria-labelledby="experience-heading"
-      className="scroll-mt-8 border-t border-border/50 py-16 sm:py-24"
+      className="scroll-mt-8 border-t border-border/50 pb-20 pt-10 sm:pb-28 sm:pt-12"
     >
       <PageContainer>
         <div className="flex items-center gap-4">
@@ -59,54 +59,65 @@ export function ExperienceSection() {
           />
         </div>
 
-        <ol className="mt-10 grid lg:grid-cols-3">
-          {experiences.map((experience) => (
-            <li
-              key={experience.id}
-              className="relative min-w-0 pb-10 pl-9 last:pb-0 lg:pb-0 lg:pl-0 lg:pr-8 lg:last:pr-0"
-            >
-              <span
-                aria-hidden="true"
-                className="absolute bottom-0 left-2 top-2 w-px bg-border lg:inset-x-0 lg:bottom-auto lg:top-2 lg:h-px lg:w-auto"
-              />
+        <div className="relative mt-14 lg:mt-20 lg:translate-x-6">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 top-2 hidden h-px bg-border lg:block"
+          />
 
-              <span
-                aria-hidden="true"
-                className="absolute left-0 top-0 z-10 flex size-4 items-center justify-center rounded-full border border-accent bg-background"
+          <ol className="grid lg:grid-cols-3 lg:gap-12">
+            {experiences.map((experience) => (
+              <li
+                key={experience.id}
+                className="relative min-w-0 pb-12 pl-9 last:pb-0 lg:flex lg:flex-col lg:pb-0 lg:pl-0"
               >
-                <span className="size-2 rounded-full bg-accent" />
-              </span>
+                <span
+                  aria-hidden="true"
+                  className="absolute bottom-0 left-2 top-2 w-px bg-border lg:hidden"
+                />
 
-              <p className="relative w-fit bg-background pr-4 text-xs leading-4 text-muted lg:ml-7 lg:px-2">
-                {experience.period}
-              </p>
+                <span
+                  aria-hidden="true"
+                  className="absolute left-0 top-0 z-10 flex size-4 items-center justify-center rounded-full border border-accent bg-background shadow-[0_0_14px_#65efc420]"
+                >
+                  <span className="size-2 rounded-full bg-accent" />
+                </span>
 
-              <h3 className="mt-6 text-xl font-semibold tracking-tight">
-                {experience.title}
-              </h3>
+                <p className="relative w-fit bg-background pr-3 text-xs leading-4 text-muted lg:ml-7 lg:px-2">
+                  {experience.period}
+                </p>
 
-              <p className="mt-1 text-sm text-foreground">{experience.role}</p>
+                <div className="mt-7 flex flex-1 flex-col lg:mt-9">
+                  <h3 className="text-xl font-semibold tracking-tight">
+                    {experience.title}
+                  </h3>
 
-              <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">
-                {experience.description}
-              </p>
+                  <p className="mt-2 text-sm leading-relaxed text-foreground lg:min-h-12">
+                    {experience.role}
+                  </p>
 
-              <ul
-                aria-label={`Teknik och kunskaper – ${experience.title}`}
-                className="mt-5 flex flex-wrap gap-2"
-              >
-                {experience.technologies.map((technology) => (
-                  <li
-                    key={technology}
-                    className="rounded-md border border-border bg-surface/50 px-2.5 py-1 text-xs text-muted"
+                  <p className="mt-4 max-w-md text-sm leading-7 text-muted">
+                    {experience.description}
+                  </p>
+
+                  <ul
+                    aria-label={`Teknik och kunskaper – ${experience.title}`}
+                    className="mt-auto flex flex-wrap gap-2 pt-6"
                   >
-                    {technology}
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ol>
+                    {experience.technologies.map((technology) => (
+                      <li
+                        key={technology}
+                        className="rounded-md border border-border bg-background/70 px-2.5 py-1 text-xs text-muted"
+                      >
+                        {technology}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
       </PageContainer>
     </section>
   );
