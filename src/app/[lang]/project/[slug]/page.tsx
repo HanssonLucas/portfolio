@@ -5,7 +5,10 @@ import { ProjectDetails } from "@/features/projects/components/ProjectDetails";
 import { projects } from "@/features/projects/data/projects";
 
 type ProjectPageProps = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{
+    lang: string;
+    slug: string;
+  }>;
 };
 
 export function generateStaticParams() {

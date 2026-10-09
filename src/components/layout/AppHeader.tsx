@@ -1,14 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState, type MouseEvent } from "react";
+import { Suspense, useRef, useState, type MouseEvent } from "react";
 import { PageContainer } from "@/components/layout/PageContainer";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
+import { localizedHref, type Locale } from "@/i18n/config";
+import { headerMessages } from "@/i18n/header";
 
-const navigation = [
-  { label: "Hem", href: "/#home" },
-  { label: "Projekt", href: "/#projects" },
-  { label: "Om mig", href: "/#about" },
-];
+type AppHeaderProps = {
+  locale: Locale;
+};
 
 function ArrowRightIcon() {
   return (
@@ -28,16 +29,25 @@ function ArrowRightIcon() {
   );
 }
 
-export function AppHeader() {
+export function AppHeader({ locale }: AppHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const messages = headerMessages[locale];
+
+  const homeHref = localizedHref(locale);
+  const contactHref = `${homeHref}#contact`;
+
+  const navigation = [
+    { label: messages.home, href: `${homeHref}#home` },
+    { label: messages.projects, href: `${homeHref}#projects` },
+    { label: messages.about, href: `${homeHref}#about` },
+  ];
 
   function closeMenu() {
     setMenuOpen(false);
   }
 
   function handleNavigation(event: MouseEvent<HTMLAnchorElement>) {
-    // Behåll vanligt beteende för exempelvis Ctrl-klick.
     if (
       event.defaultPrevented ||
       event.button !== 0 ||
@@ -53,7 +63,6 @@ export function AppHeader() {
 
     const destination = new URL(event.currentTarget.href);
 
-    // Från en annan sida sköter Next.js navigationen.
     if (
       destination.origin !== window.location.origin ||
       destination.pathname !== window.location.pathname ||
@@ -103,18 +112,18 @@ export function AppHeader() {
       }}
     >
       <PageContainer>
-        <div className="flex min-h-20 items-center gap-12 py-4 sm:min-h-24">
+        <div className="flex min-h-20 items-center gap-3 py-4 sm:min-h-24 lg:gap-8">
           <Link
-            href="/#home"
+            href={`${homeHref}#home`}
             onClick={handleNavigation}
-            aria-label="Lucas Hansson – startsida"
+            aria-label={messages.homeLabel}
             className="inline-flex min-h-11 shrink-0 items-center rounded text-2xl font-semibold tracking-tight text-accent"
           >
             L/H.
           </Link>
 
-          <nav aria-label="Huvudnavigation" className="hidden md:block">
-            <ul className="flex items-center gap-8">
+          <nav aria-label={messages.mainNavigation} className="hidden lg:block">
+            <ul className="flex items-center gap-6">
               {navigation.map((item) => (
                 <li key={item.href}>
                   <Link
@@ -131,12 +140,13 @@ export function AppHeader() {
                   </Link>
                 </li>
               ))}
+
               <li>
                 <a
                   href="/documents/lucas-hansson-cv.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Öppna mitt CV som PDF i en ny flik"
+                  aria-label={messages.cvLabel}
                   className="group relative inline-flex min-h-11 items-center rounded text-sm text-foreground transition-colors hover:text-accent"
                 >
                   CV
@@ -149,51 +159,59 @@ export function AppHeader() {
             </ul>
           </nav>
 
-          <Link
-            href="/#contact"
-            onClick={handleNavigation}
-            className="ml-auto hidden min-h-11 items-center justify-center gap-3 rounded-full border border-accent/50 px-5 py-2 text-sm font-medium text-foreground transition-colors hover:border-accent hover:bg-accent/5 md:inline-flex"
-          >
-            Kontakta mig
-            <ArrowRightIcon />
-          </Link>
-
-          <button
-            ref={menuButtonRef}
-            type="button"
-            aria-expanded={menuOpen}
-            aria-controls="mobile-navigation"
-            aria-label={menuOpen ? "Stäng menyn" : "Öppna menyn"}
-            onClick={() => setMenuOpen((open) => !open)}
-            className="ml-auto inline-flex min-h-11 items-center gap-3 rounded-full border border-border bg-surface/60 px-4 text-sm text-foreground transition-colors hover:border-accent/50 hover:text-accent md:hidden"
-          >
-            {menuOpen ? "Stäng" : "Meny"}
-
-            <svg
-              aria-hidden="true"
-              focusable="false"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.75"
-              strokeLinecap="round"
-              className="size-5"
+          <div className="ml-auto flex shrink-0 items-center gap-3 lg:gap-5">
+            <Suspense
+              fallback={<div aria-hidden="true" className="h-11 w-22" />}
             >
-              {menuOpen ? (
-                <path d="m6 6 12 12M18 6 6 18" />
-              ) : (
-                <path d="M4 7h16M4 12h16M4 17h16" />
-              )}
-            </svg>
-          </button>
+              <LanguageSwitcher locale={locale} onNavigate={closeMenu} />
+            </Suspense>
+
+            <Link
+              href={contactHref}
+              onClick={handleNavigation}
+              className="hidden min-h-11 items-center justify-center gap-3 rounded-full border border-accent/50 px-5 py-2 text-sm font-medium text-foreground transition-colors hover:border-accent hover:bg-accent/5 lg:inline-flex"
+            >
+              {messages.contact}
+              <ArrowRightIcon />
+            </Link>
+
+            <button
+              ref={menuButtonRef}
+              type="button"
+              aria-expanded={menuOpen}
+              aria-controls="mobile-navigation"
+              aria-label={menuOpen ? messages.closeMenu : messages.openMenu}
+              onClick={() => setMenuOpen((open) => !open)}
+              className="inline-flex min-h-11 items-center gap-2 rounded-full border border-border bg-surface/60 px-3 text-sm text-foreground transition-colors hover:border-accent/50 hover:text-accent lg:hidden"
+            >
+              {menuOpen ? messages.close : messages.menu}
+
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                className="size-5"
+              >
+                {menuOpen ? (
+                  <path d="m6 6 12 12M18 6 6 18" />
+                ) : (
+                  <path d="M4 7h16M4 12h16M4 17h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
       </PageContainer>
 
       <nav
         id="mobile-navigation"
-        aria-label="Mobilnavigation"
+        aria-label={messages.mobileNavigation}
         hidden={!menuOpen}
-        className="absolute inset-x-0 top-full max-h-[calc(100dvh-6rem)] overflow-y-auto border-b border-border bg-background shadow-xl md:hidden"
+        className="absolute inset-x-0 top-full max-h-[calc(100dvh-6rem)] overflow-y-auto border-b border-border bg-background shadow-xl lg:hidden"
       >
         <PageContainer>
           <div className="pb-6 pt-3">
@@ -209,13 +227,14 @@ export function AppHeader() {
                   </Link>
                 </li>
               ))}
+
               <li>
                 <a
                   href="/documents/lucas-hansson-cv.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={closeMenu}
-                  aria-label="Öppna mitt CV som PDF i en ny flik"
+                  aria-label={messages.cvLabel}
                   className="flex min-h-12 items-center rounded-lg px-3 text-sm text-foreground transition-colors hover:bg-surface hover:text-accent"
                 >
                   CV
@@ -224,11 +243,11 @@ export function AppHeader() {
             </ul>
 
             <Link
-              href="/#contact"
+              href={contactHref}
               onClick={handleNavigation}
               className="mt-4 inline-flex min-h-11 items-center justify-center gap-3 rounded-full border border-accent/50 px-5 py-2 text-sm font-medium text-foreground transition-colors hover:border-accent hover:bg-accent/5"
             >
-              Kontakta mig
+              {messages.contact}
               <ArrowRightIcon />
             </Link>
           </div>
