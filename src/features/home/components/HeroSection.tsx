@@ -1,47 +1,17 @@
 import Image from "next/image";
 import { PageContainer } from "@/components/layout/PageContainer";
 import type { Locale } from "@/i18n/config";
+import { heroMessages } from "@/i18n/hero";
 import heroMountains from "../../../../public/images/hero/hero-mountains.png";
 import { HeroProjectPreview } from "./HeroProjectPreview";
 import styles from "./HeroSection.module.css";
 
-const messages = {
-  sv: {
-    eyebrow: "Frontendutvecklare · Fullstackkompetens",
-    heading: "Jag bygger webbapplikationer med fokus på",
-    headingAccent: "funktion och upplevelse.",
-    description:
-      "Jag heter Lucas och är frontendutvecklare med fullstackkompetens. Här visar jag projekt jag byggt, erfarenheter jag fått och hur jag arbetar med modern webbutveckling.",
-    projects: "Se mina projekt",
-    about: "Läs mer om mig",
-  },
-  en: {
-    eyebrow: "Frontend developer · Full-stack skills",
-    heading: "I build web applications with a focus on",
-    headingAccent: "functionality and user experience.",
-    description:
-      "I'm Lucas, a frontend developer with full-stack skills. Here I share the projects I've built, what I've learned and how I approach modern web development.",
-    projects: "Explore my projects",
-    about: "More about me",
-  },
-} satisfies Record<
-  Locale,
-  {
-    eyebrow: string;
-    heading: string;
-    headingAccent: string;
-    description: string;
-    projects: string;
-    about: string;
-  }
->;
-
 type HeroSectionProps = {
-  locale?: Locale;
+  locale: Locale;
 };
 
-export function HeroSection({ locale = "sv" }: HeroSectionProps) {
-  const text = messages[locale];
+export function HeroSection({ locale }: HeroSectionProps) {
+  const text = heroMessages[locale];
 
   return (
     <section

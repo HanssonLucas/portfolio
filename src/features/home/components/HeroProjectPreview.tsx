@@ -1,25 +1,14 @@
 import Image from "next/image";
 import type { Locale } from "@/i18n/config";
+import { heroMessages } from "@/i18n/hero";
 import pasdartPreview from "../../../../public/images/projects/pasdart/pasdart-hero.png";
-
-const messages = {
-  sv: {
-    imageAlt: "Pasdarts cupvy med semifinaler, final och matchresultat.",
-    status: "Under utveckling",
-  },
-  en: {
-    imageAlt:
-      "Pasdart's tournament view showing semifinals, the final and match results.",
-    status: "In development",
-  },
-} satisfies Record<Locale, { imageAlt: string; status: string }>;
 
 type HeroProjectPreviewProps = {
   locale: Locale;
 };
 
 export function HeroProjectPreview({ locale }: HeroProjectPreviewProps) {
-  const text = messages[locale];
+  const text = heroMessages[locale].preview;
 
   return (
     <figure className="mx-auto w-full min-w-0 max-w-xl">
