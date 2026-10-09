@@ -163,7 +163,3 @@ export const projectsMessages: Record<Locale, ProjectsMessages> = {
     },
   },
 };
-
-// Tillfällig export för komponentens nuvarande import.
-// Tas bort när FeaturedProjectsSection använder projectsMessages.
-export const englishProjectTranslations = projectsMessages.en.items;
