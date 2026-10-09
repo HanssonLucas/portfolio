@@ -10,7 +10,7 @@ export function FeaturedProjectsSection() {
     <section
       id="projects"
       aria-labelledby="projects-heading"
-      className="scroll-mt-8 border-t border-border/50 bg-background py-16 sm:py-24"
+      className="section-glow section-glow-left scroll-mt-28 border-t border-border/50 bg-background py-16 sm:py-24"
     >
       <PageContainer>
         <div className="flex items-center gap-4">
