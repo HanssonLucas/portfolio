@@ -4,6 +4,7 @@ import { PageContainer } from "@/components/layout/PageContainer";
 import { ProjectDetails } from "@/features/projects/components/ProjectDetails";
 import { projects } from "@/features/projects/data/projects";
 import { isLocale } from "@/i18n/config";
+import { projectDetailsMessages } from "@/i18n/projectDetails";
 
 type ProjectPageProps = {
   params: Promise<{
@@ -20,7 +21,13 @@ export function generateStaticParams() {
 
 export default function ProjectPage({ params }: ProjectPageProps) {
   return (
-    <Suspense fallback={<ProjectLoading />}>
+    <Suspense
+      fallback={
+        <Suspense fallback={null}>
+          <ProjectLoading params={params} />
+        </Suspense>
+      }
+    >
       <ProjectContent params={params} />
     </Suspense>
   );
@@ -42,12 +49,20 @@ async function ProjectContent({ params }: ProjectPageProps) {
   return <ProjectDetails project={project} locale={lang} />;
 }
 
-function ProjectLoading() {
+async function ProjectLoading({ params }: ProjectPageProps) {
+  const { lang } = await params;
+
+  if (!isLocale(lang)) {
+    return null;
+  }
+
+  const text = projectDetailsMessages[lang];
+
   return (
     <main className="flex-1 py-16">
       <PageContainer>
         <p role="status" className="text-sm text-muted">
-          Laddar projektet…
+          {text.loading}
         </p>
       </PageContainer>
     </main>
