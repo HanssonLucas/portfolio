@@ -13,6 +13,10 @@ export const projects = [
     imageAlt:
       "Pasd'Arts startsida med introduktion och möjlighet att skapa en cup.",
     technologies: ["Next.js", "TypeScript", "Material UI", "PostgreSQL"],
+    links: {
+      live: "https://pasdart.vercel.app/",
+      github: "https://github.com/HanssonLucas/Pasdart",
+    },
     details: [
       {
         id: "background",
@@ -94,6 +98,10 @@ export const projects = [
     imageAlt:
       "Samspels startsida med rubriken Mer tid för handledning. Mindre bokningskrångel.",
     technologies: ["Next.js", "TypeScript", "Material UI", "SQLite"],
+    links: {
+      live: "",
+      github: "https://github.com/HanssonLucas/school-booking-system",
+    },
     details: [
       {
         id: "background",

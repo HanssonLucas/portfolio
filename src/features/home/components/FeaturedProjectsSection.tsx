@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { ProjectGallery } from "@/features/projects/components/ProjectGallery";
 import { projects } from "@/features/projects/data/projects";
+import { ProjectLinks } from "@/features/projects/components/ProjectLinks";
 
 export function FeaturedProjectsSection() {
   return (
@@ -85,15 +86,30 @@ export function FeaturedProjectsSection() {
                     </li>
                   ))}
                 </ul>{" "}
-                <div className="mt-6">
+                <div className="mt-6 flex flex-wrap items-center justify-between gap-x-5 gap-y-3">
                   <Link
                     href={`/project/${project.id}`}
                     aria-label={`Läs mer om ${project.name}`}
-                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-accent/30 px-5 py-2.5 text-sm font-medium text-accent transition-colors hover:border-accent/60 hover:bg-accent/10"
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-accent/40 px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-accent hover:bg-accent/5 hover:text-accent"
                   >
-                    Läs mer
-                    <span aria-hidden="true">→</span>
+                    <span>Läs mer</span>
+
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.75"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="size-4 shrink-0 text-accent"
+                    >
+                      <path d="M5 12h14m-5-5 5 5-5 5" />
+                    </svg>
                   </Link>
+
+                  <ProjectLinks name={project.name} links={project.links} />
                 </div>
               </div>
             </article>

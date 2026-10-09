@@ -4,6 +4,7 @@ import { PageContainer } from "@/components/layout/PageContainer";
 import type { Project } from "@/features/projects/data/projects";
 import { ProjectGallery } from "./ProjectGallery";
 import { ProjectStory } from "./ProjectStory";
+import { ProjectLinks } from "./ProjectLinks";
 
 type ProjectDetailsProps = {
   project: Project;
@@ -57,6 +58,9 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
               </li>
             ))}
           </ul>
+          <div className="mt-6">
+            <ProjectLinks name={project.name} links={project.links} />
+          </div>
         </header>
 
         <section
