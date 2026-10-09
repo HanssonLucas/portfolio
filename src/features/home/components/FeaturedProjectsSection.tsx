@@ -2,10 +2,40 @@ import Image from "next/image";
 import Link from "next/link";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { ProjectGallery } from "@/features/projects/components/ProjectGallery";
-import { projects } from "@/features/projects/data/projects";
 import { ProjectLinks } from "@/features/projects/components/ProjectLinks";
+import { projects } from "@/features/projects/data/projects";
+import { localizedHref, type Locale } from "@/i18n/config";
+import { projectsMessages } from "@/i18n/projects";
 
-export function FeaturedProjectsSection() {
+type FeaturedProjectsSectionProps = {
+  locale?: Locale;
+};
+
+export function FeaturedProjectsSection({
+  locale = "sv",
+}: FeaturedProjectsSectionProps) {
+  const text = projectsMessages[locale];
+
+  const localizedProjects = projects.map((project) => {
+    if (project.id !== "pasdart" && project.id !== "samspel") {
+      return project;
+    }
+
+    const translation = text.items[project.id];
+
+    return {
+      ...project,
+      category: translation.category,
+      status: translation.status,
+      description: translation.description,
+      imageAlt: translation.imageAlt,
+      gallery: project.gallery.map((image) => ({
+        ...image,
+        ...translation.gallery[image.src],
+      })),
+    };
+  });
+
   return (
     <section
       id="projects"
@@ -22,20 +52,24 @@ export function FeaturedProjectsSection() {
             id="projects-heading"
             className="text-sm font-medium uppercase tracking-widest"
           >
-            Utvalda projekt
+            {text.heading}
           </h2>
 
           <span aria-hidden="true" className="h-px w-16 bg-border" />
         </div>
 
         <div className="mt-8 grid gap-6 md:grid-cols-2">
-          {projects.map((project) => (
+          {localizedProjects.map((project) => (
             <article
               key={project.id}
               aria-labelledby={`${project.id}-heading`}
               className="overflow-hidden rounded-2xl border border-accent/20 bg-surface"
             >
-              <ProjectGallery name={project.name} images={project.gallery}>
+              <ProjectGallery
+                name={project.name}
+                images={project.gallery}
+                locale={locale}
+              >
                 <div className="relative">
                   <Image
                     src={project.image}
@@ -67,14 +101,17 @@ export function FeaturedProjectsSection() {
                 >
                   {project.name}
                 </h3>
+
                 <p className="mt-2 text-xs font-medium uppercase tracking-wider text-accent">
                   {project.category}
                 </p>
+
                 <p className="mt-3 text-sm leading-relaxed text-muted">
                   {project.description}
                 </p>
+
                 <ul
-                  aria-label={`Teknik i ${project.name}`}
+                  aria-label={`${text.technologies} ${project.name}`}
                   className="mt-5 flex flex-wrap gap-2"
                 >
                   {project.technologies.map((technology) => (
@@ -85,14 +122,15 @@ export function FeaturedProjectsSection() {
                       {technology}
                     </li>
                   ))}
-                </ul>{" "}
+                </ul>
+
                 <div className="mt-6 flex flex-wrap items-center justify-between gap-x-5 gap-y-3">
                   <Link
-                    href={`/project/${project.id}`}
-                    aria-label={`Läs mer om ${project.name}`}
+                    href={localizedHref(locale, `/project/${project.id}`)}
+                    aria-label={`${text.readMoreAbout} ${project.name}`}
                     className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-accent/40 px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-accent hover:bg-accent/5 hover:text-accent"
                   >
-                    <span>Läs mer</span>
+                    <span>{text.readMore}</span>
 
                     <svg
                       aria-hidden="true"
@@ -109,7 +147,11 @@ export function FeaturedProjectsSection() {
                     </svg>
                   </Link>
 
-                  <ProjectLinks name={project.name} links={project.links} />
+                  <ProjectLinks
+                    name={project.name}
+                    links={project.links}
+                    locale={locale}
+                  />
                 </div>
               </div>
             </article>

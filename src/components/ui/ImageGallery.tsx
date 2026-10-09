@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
+import type { Locale } from "@/i18n/config";
+import { galleryMessages } from "@/i18n/gallery";
 
 export type GalleryImage = {
   src: string;
@@ -13,6 +15,7 @@ type ImageGalleryProps = {
   name: string;
   images: GalleryImage[];
   children: ReactNode;
+  locale?: Locale;
   eyebrow?: string;
   triggerLabel?: string;
   variant?: "project" | "photo";
@@ -23,8 +26,9 @@ export function ImageGallery({
   name,
   images,
   children,
-  eyebrow = "Projektgalleri",
-  triggerLabel = "Visa bilder",
+  locale = "sv",
+  eyebrow,
+  triggerLabel,
   variant = "project",
   unoptimized = true,
 }: ImageGalleryProps) {
@@ -34,6 +38,9 @@ export function ImageGallery({
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const titleId = useId();
 
+  const text = galleryMessages[locale];
+  const galleryEyebrow = eyebrow ?? text.projectGallery;
+  const galleryTriggerLabel = triggerLabel ?? text.viewImages;
   const activeImage = activeIndex === null ? null : images[activeIndex];
 
   useEffect(() => {
@@ -86,14 +93,14 @@ export function ImageGallery({
           type="button"
           onClick={openGallery}
           disabled={!images.length}
-          aria-label={`${triggerLabel} – ${name}`}
+          aria-label={`${galleryTriggerLabel} – ${name}`}
           aria-haspopup="dialog"
           className={`group absolute inset-0 cursor-zoom-in focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-accent ${
             variant === "photo" ? "rounded-2xl" : "rounded-t-2xl"
           }`}
         >
           <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-lg border border-accent/20 bg-background/95 px-3 py-2 text-xs font-medium text-accent transition-colors group-hover:bg-surface">
-            {triggerLabel}
+            {galleryTriggerLabel}
 
             <svg
               aria-hidden="true"
@@ -149,7 +156,7 @@ export function ImageGallery({
           <div className="mb-4 flex items-center justify-between gap-4">
             <div>
               <p className="text-xs font-medium uppercase tracking-widest text-accent">
-                {eyebrow}
+                {galleryEyebrow}
               </p>
 
               <h2
@@ -163,7 +170,7 @@ export function ImageGallery({
             <button
               type="button"
               onClick={() => dialogRef.current?.close()}
-              aria-label="Stäng bildgalleriet"
+              aria-label={text.closeGallery}
               className="flex size-11 shrink-0 items-center justify-center rounded-full border border-border bg-surface text-muted transition-colors hover:border-accent/50 hover:text-accent"
             >
               <svg
@@ -221,7 +228,7 @@ export function ImageGallery({
                   type="button"
                   onClick={() => changeImage(-1)}
                   disabled={images.length < 2}
-                  aria-label="Föregående bild"
+                  aria-label={text.previousImage}
                   className="flex size-11 shrink-0 items-center justify-center rounded-full border border-border bg-surface text-foreground transition-colors hover:border-accent/50 hover:text-accent disabled:opacity-40"
                 >
                   <svg
@@ -241,7 +248,7 @@ export function ImageGallery({
 
                 <div
                   role="group"
-                  aria-label="Välj bild"
+                  aria-label={text.chooseImage}
                   className="flex min-w-0 flex-wrap justify-center"
                 >
                   {images.map((image, index) => (
@@ -249,7 +256,7 @@ export function ImageGallery({
                       key={image.src}
                       type="button"
                       onClick={() => setActiveIndex(index)}
-                      aria-label={`Bild ${index + 1}: ${image.caption}`}
+                      aria-label={`${text.image} ${index + 1}: ${image.caption}`}
                       aria-current={index === activeIndex ? "true" : undefined}
                       className="group flex size-11 items-center justify-center rounded-full"
                     >
@@ -269,7 +276,7 @@ export function ImageGallery({
                   type="button"
                   onClick={() => changeImage(1)}
                   disabled={images.length < 2}
-                  aria-label="Nästa bild"
+                  aria-label={text.nextImage}
                   className="flex size-11 shrink-0 items-center justify-center rounded-full border border-border bg-surface text-foreground transition-colors hover:border-accent/50 hover:text-accent disabled:opacity-40"
                 >
                   <svg

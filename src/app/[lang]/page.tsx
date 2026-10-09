@@ -21,7 +21,7 @@ export default async function Home({ params }: HomePageProps) {
   return (
     <main className="flex flex-1 flex-col">
       <HeroSection locale={lang} />
-      <FeaturedProjectsSection />
+      <FeaturedProjectsSection locale={lang} />
       <AboutSection />
       <HomeBackdrop>
         <ExperienceSection />

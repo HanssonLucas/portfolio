@@ -1,11 +1,20 @@
 import type { Project } from "@/features/projects/data/projects";
+import type { Locale } from "@/i18n/config";
+import { projectLinksMessages } from "@/i18n/projectLinks";
 
 type ProjectLinksProps = {
   name: Project["name"];
   links: Project["links"];
+  locale?: Locale;
 };
 
-export function ProjectLinks({ name, links }: ProjectLinksProps) {
+export function ProjectLinks({
+  name,
+  links,
+  locale = "sv",
+}: ProjectLinksProps) {
+  const text = projectLinksMessages[locale];
+
   if (!links.live && !links.github) return null;
 
   return (
@@ -15,7 +24,7 @@ export function ProjectLinks({ name, links }: ProjectLinksProps) {
           href={links.live}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={`Öppna sida för ${name} i en ny flik`}
+          aria-label={text.openSiteLabel.replace("{name}", name)}
           className="inline-flex min-h-11 items-center gap-2 rounded text-sm font-medium text-foreground transition-colors hover:text-accent"
         >
           <svg
@@ -34,7 +43,7 @@ export function ProjectLinks({ name, links }: ProjectLinksProps) {
             <path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4" />
           </svg>
 
-          <span>Öppna sida</span>
+          <span>{text.openSite}</span>
         </a>
       )}
 
@@ -43,7 +52,7 @@ export function ProjectLinks({ name, links }: ProjectLinksProps) {
           href={links.github}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={`Visa koden för ${name} på GitHub i en ny flik`}
+          aria-label={text.githubLabel.replace("{name}", name)}
           className="inline-flex min-h-11 items-center gap-2 rounded text-sm font-medium text-foreground transition-colors hover:text-accent"
         >
           <svg
