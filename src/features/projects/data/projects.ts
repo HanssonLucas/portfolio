@@ -5,173 +5,57 @@ export const projects = [
   {
     id: "pasdart",
     name: "Pasd'Art",
-    category: "Eget projekt",
-    status: "Under utveckling",
-    description:
-      "Ett webbaserat system för dartcuper med lagindelning, gruppspel, slutspel och matchresultat.",
     image: pasdartHome,
-    imageAlt:
-      "Pasd'Arts startsida med introduktion och möjlighet att skapa en cup.",
     technologies: ["Next.js", "TypeScript", "Material UI", "PostgreSQL"],
     links: {
       live: "https://pasdart.vercel.app/",
       github: "https://github.com/HanssonLucas/Pasdart",
     },
-    details: [
-      {
-        id: "background",
-        heading: "Från dartkväll till webbapp",
-        paragraphs: [
-          "Pasd’Art började med ett behov i mitt eget dartgäng. Vi hanterade lottning, matcher, tabeller och resultat manuellt. Det fungerade, men blev lätt rörigt när vi ville hålla koll på hela cupen.",
-          "Jag ville samla flödet på ett ställe: skapa en cup, lotta lag, genomföra gruppspel och slutspel och till sist få fram en vinnare.",
-        ],
-      },
-      {
-        id: "role",
-        heading: "Min roll",
-        paragraphs: [
-          "Jag utvecklar projektet själv och ansvarar för design, UX, frontend, backend, databas och driftsättning. Arbetet omfattar även behörigheter, ett visningsläge för åskådare och stöd för olika matchformat.",
-          "Applikationen är byggd med Next.js, TypeScript och Material UI. Data lagras i PostgreSQL via Neon, med Drizzle för databashanteringen. Projektet körs live på Vercel.",
-        ],
-      },
-      {
-        id: "challenges",
-        heading: "Mer logik än jag först trodde",
-        paragraphs: [
-          "Den största utmaningen har varit att få turneringslogiken att fungera i olika scenarier. Gruppspel, tabeller, särskiljning med castoff, seedning och slutspel behöver hänga ihop även när flera lag får lika resultat.",
-          "Schemaläggningen har också krävt mycket arbete. Matcher ska kunna fördelas över flera darttavlor utan att samma lag får två matcher samtidigt.",
-        ],
-      },
-      {
-        id: "lessons",
-        heading: "Det jag tar med mig",
-        paragraphs: [
-          "Projektet har gett mig praktisk erfarenhet av datamodellering, API-struktur, state-hantering och säkerhet. Jag har fått arbeta med hur gränssnitt, matchlogik och sparade resultat påverkar varandra.",
-          "När projektet har vuxit har det också blivit tydligt varför stora komponenter behöver delas upp. En tydligare ansvarsfördelning gör koden lättare att förstå, felsöka och vidareutveckla.",
-        ],
-      },
-      {
-        id: "next-steps",
-        heading: "Testat i praktiken, med mer att bygga",
-        paragraphs: [
-          "Vi har testat riktiga turneringsflöden i appen. Det ger mig konkreta saker att förbättra och hjälper mig att utforma systemet för våra dartkvällar.",
-          "Framåt vill jag utveckla historik, spelarstatistik, leaderboard, rating och bättre lagbalansering. Det är planerade förbättringar, medan fokus nu ligger på att fortsätta utveckla det befintliga cupflödet.",
-        ],
-      },
-    ],
     gallery: [
       {
         src: "/images/projects/pasdart/pasdart-home.png",
-        alt: "Pasd'Arts startsida.",
-        caption: "Startsidan — introduktion till Pasd’Art.",
       },
       {
         src: "/images/projects/pasdart/pasdart-players.png",
-        alt: "Spelarhantering i Pasd'Art.",
-        caption: "Hantera spelare inför en cup.",
       },
       {
         src: "/images/projects/pasdart/pasdart-create.png",
-        alt: "Vyn för att skapa en dartcup i Pasd'Art.",
-        caption: "Skapa en ny cup.",
       },
       {
         src: "/images/projects/pasdart/pasdart-groups.png",
-        alt: "Gruppspel med tabeller och matchresultat i Pasd'Art.",
-        caption: "Följ gruppspelets tabeller och resultat.",
       },
       {
         src: "/images/projects/pasdart/pasdart-playoffs.png",
-        alt: "Slutspel med semifinaler och final i Pasd'Art.",
-        caption: "Slutspel — från semifinaler till final.",
       },
     ],
   },
   {
     id: "samspel",
     name: "Samspel",
-    category: "Bokningssystem · Examensarbete",
-    status: "Vidareutvecklas",
-    description:
-      "Ett bokningssystem för handledning och muntliga redovisningar. Lärare skapar tillfällen och studenter bokar en tid.",
     image: bookingHome,
-    imageAlt:
-      "Samspels startsida med rubriken Mer tid för handledning. Mindre bokningskrångel.",
     technologies: ["Next.js", "TypeScript", "Material UI", "SQLite"],
     links: {
       live: "",
       github: "https://github.com/HanssonLucas/school-booking-system",
     },
-    details: [
-      {
-        id: "background",
-        heading: "Från delat dokument till bokningssystem",
-        paragraphs: [
-          "Samspel började som mitt examensarbete. Under utbildningen använde vi Google Docs för att boka handledning och muntliga redovisningar. Jag ville göra bokningen tydligare och samla hela flödet på ett ställe.",
-          "Vi hade studenter från flera olika länder, och alla var inte lika bekväma med svenska. Därför byggde jag hela systemet på både svenska och engelska. Språkstödet var en viktig del av idén från början, så att fler skulle kunna förstå och använda systemet.",
-          "Lärare kan skapa tillfällen med lediga tider och studenter kan boka och avboka direkt, utan att behöva ändra i ett gemensamt dokument.",
-        ],
-      },
-      {
-        id: "role",
-        heading: "Min roll",
-        paragraphs: [
-          "Jag har utvecklat projektet själv och ansvarat för design, UX, frontend, backend och databas. Systemet är byggt med Next.js, TypeScript, Material UI och SQLite.",
-          "Under examensarbetet låg fokus på bokningsflödet för lärare och studenter. Efteråt har jag fortsatt utveckla systemet med bland annat inloggning, behörigheter, e-postverifiering och klasshantering.",
-        ],
-      },
-      {
-        id: "challenges",
-        heading: "Att få tider och bokningar att fungera ihop",
-        paragraphs: [
-          "En av de största utmaningarna har varit logiken bakom tidsluckorna. Starttid, sluttid och längden på varje samtal avgör vilka tider som går att boka. Jag har också behövt hantera vad som händer när en lärare ändrar ett tillfälle som redan har bokningar.",
-          "När fler funktioner tillkom blev behörigheter en större del av arbetet. Lärare och studenter behöver kunna göra olika saker och bara komma åt de klasser och den information som hör till dem.",
-        ],
-      },
-      {
-        id: "lessons",
-        heading: "Det jag tar med mig",
-        paragraphs: [
-          "Projektet har lärt mig mycket om hur gränssnitt, bokningslogik och databas behöver hänga ihop. En ändring av ett tillfälle kan påverka både lediga tider och befintliga bokningar, vilket har fått mig att tänka igenom fler scenarier.",
-          "Jag har också lagt mycket tid på att göra vyerna tydliga och enhetliga. När projektet har vuxit har jag sett värdet av att dela upp stora komponenter och återanvända både logik och design.",
-        ],
-      },
-      {
-        id: "next-steps",
-        heading: "Från examensarbete till nästa steg",
-        paragraphs: [
-          "Examensarbetet avslutades med högsta betyg, men jag har fortsatt utveckla Samspel för att göra det mer användbart i praktiken. Hittills har jag själv testat flödena under utvecklingen. Nästa steg är att få återkoppling från lärare och studenter.",
-          "Vid presentationen nämnde min lärare att systemet skulle kunna vara intressant för skolan och erbjöd sig att hjälpa mig med en kontakt när jag känner mig redo. Jag planerar att följa upp det och se om det finns intresse för att testa Samspel.",
-        ],
-      },
-    ],
     gallery: [
       {
         src: "/images/projects/booking/booking-home.png",
-        alt: "Samspels startsida.",
-        caption: "Startsidan — introduktion till Samspel.",
       },
       {
         src: "/images/projects/booking/booking-overview.png",
-        alt: "Översikt över bokningstillfällen i Samspel.",
-        caption: "Överblick över kommande bokningstillfällen.",
       },
       {
         src: "/images/projects/booking/booking-create.png",
-        alt: "Formulär för att skapa ett bokningstillfälle i Samspel.",
-        caption: "Skapa ett nytt bokningstillfälle.",
       },
       {
         src: "/images/projects/booking/booking-participants.png",
-        alt: "Deltagarlista för ett bokningstillfälle i Samspel.",
-        caption: "Se deltagare och bokade tider.",
       },
       {
         src: "/images/projects/booking/booking-classes.png",
-        alt: "Klasshantering i Samspel.",
-        caption: "Hantera klasser.",
       },
     ],
   },
 ];
+
 export type Project = (typeof projects)[number];

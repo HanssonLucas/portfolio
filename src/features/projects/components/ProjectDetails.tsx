@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PageContainer } from "@/components/layout/PageContainer";
 import type { Project } from "@/features/projects/data/projects";
+import { getLocalizedProject } from "@/features/projects/data/getLocalizedProject";
 import { localizedHref, type Locale } from "@/i18n/config";
 import { projectDetailsMessages } from "@/i18n/projectDetails";
 import { projectsMessages } from "@/i18n/projects";
@@ -20,16 +21,7 @@ export function ProjectDetails({
 }: ProjectDetailsProps) {
   const text = projectDetailsMessages[locale];
   const projectText = projectsMessages[locale];
-
-  const translation =
-    project.id === "pasdart" || project.id === "samspel"
-      ? projectText.items[project.id]
-      : undefined;
-
-  const gallery = project.gallery.map((image) => ({
-    ...image,
-    ...translation?.gallery[image.src],
-  }));
+  const localizedProject = getLocalizedProject(project, locale);
 
   return (
     <main className="flex-1 py-10 sm:py-16">
@@ -44,12 +36,12 @@ export function ProjectDetails({
 
         <header className="mt-8 sm:mt-12">
           <p className="text-xs font-medium uppercase tracking-widest text-accent">
-            {translation?.category ?? project.category}
+            {localizedProject.category}
           </p>
 
           <div className="mt-4 flex flex-wrap items-center gap-4">
             <h1 className="text-4xl font-semibold tracking-tight sm:text-6xl">
-              {project.name}
+              {localizedProject.name}
             </h1>
 
             <span className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-surface px-3 py-1.5 text-xs font-medium text-accent">
@@ -57,19 +49,19 @@ export function ProjectDetails({
                 aria-hidden="true"
                 className="size-1.5 rounded-full bg-accent"
               />
-              {translation?.status ?? project.status}
+              {localizedProject.status}
             </span>
           </div>
 
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
-            {translation?.description ?? project.description}
+            {localizedProject.description}
           </p>
 
           <ul
-            aria-label={`${projectText.technologies} ${project.name}`}
+            aria-label={`${projectText.technologies} ${localizedProject.name}`}
             className="mt-6 flex flex-wrap gap-2"
           >
-            {project.technologies.map((technology) => (
+            {localizedProject.technologies.map((technology) => (
               <li
                 key={technology}
                 className="rounded-md border border-border bg-surface px-3 py-1.5 text-xs text-muted"
@@ -81,8 +73,8 @@ export function ProjectDetails({
 
           <div className="mt-6">
             <ProjectLinks
-              name={project.name}
-              links={project.links}
+              name={localizedProject.name}
+              links={localizedProject.links}
               locale={locale}
             />
           </div>
@@ -105,13 +97,13 @@ export function ProjectDetails({
 
           <div className="overflow-hidden rounded-2xl border border-accent/20 bg-surface">
             <ProjectGallery
-              name={project.name}
-              images={gallery}
+              name={localizedProject.name}
+              images={localizedProject.gallery}
               locale={locale}
             >
               <Image
-                src={project.image}
-                alt={translation?.imageAlt ?? project.imageAlt}
+                src={localizedProject.image}
+                alt={localizedProject.imageAlt}
                 className="block h-auto w-full"
                 sizes="(min-width: 1152px) 1104px, calc(100vw - 48px)"
                 loading="eager"
@@ -121,7 +113,7 @@ export function ProjectDetails({
           </div>
         </section>
 
-        <ProjectStory projectId={project.id} locale={locale} />
+        <ProjectStory projectId={localizedProject.id} locale={locale} />
       </PageContainer>
     </main>
   );

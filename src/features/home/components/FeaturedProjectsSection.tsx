@@ -6,6 +6,7 @@ import { ProjectLinks } from "@/features/projects/components/ProjectLinks";
 import { projects } from "@/features/projects/data/projects";
 import { localizedHref, type Locale } from "@/i18n/config";
 import { projectsMessages } from "@/i18n/projects";
+import { getLocalizedProject } from "@/features/projects/data/getLocalizedProject";
 
 type FeaturedProjectsSectionProps = {
   locale?: Locale;
@@ -16,25 +17,9 @@ export function FeaturedProjectsSection({
 }: FeaturedProjectsSectionProps) {
   const text = projectsMessages[locale];
 
-  const localizedProjects = projects.map((project) => {
-    if (project.id !== "pasdart" && project.id !== "samspel") {
-      return project;
-    }
-
-    const translation = text.items[project.id];
-
-    return {
-      ...project,
-      category: translation.category,
-      status: translation.status,
-      description: translation.description,
-      imageAlt: translation.imageAlt,
-      gallery: project.gallery.map((image) => ({
-        ...image,
-        ...translation.gallery[image.src],
-      })),
-    };
-  });
+  const localizedProjects = projects.map((project) =>
+    getLocalizedProject(project, locale),
+  );
 
   return (
     <section
