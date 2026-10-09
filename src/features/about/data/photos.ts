@@ -1,34 +1,37 @@
 import type { GalleryImage } from "@/components/ui/ImageGallery";
+import type { Locale } from "@/i18n/config";
+import { photoMessages } from "@/i18n/photos";
 
-export const personalPhotos: GalleryImage[] = [
+const personalPhotos = [
   {
+    id: "P1290101",
     src: "/images/about/gallery/P1290101.JPG",
-    alt: "Svartvitt gatufoto med en passerande cyklist framför tre välvda skyltfönster.",
-    caption: "I förbifarten",
   },
   {
+    id: "P1290182",
     src: "/images/about/gallery/P1290182.JPG",
-    alt: "Svartvitt foto av två personer som speglas i en välvd spegel.",
-    caption: "Ett annat perspektiv",
   },
   {
+    id: "P1290183",
     src: "/images/about/gallery/P1290183.JPG",
-    alt: "Svartvit vy genom ett fönster med människor och gatuliv utanför.",
-    caption: "Livet utanför",
   },
   {
+    id: "P1290230",
     src: "/images/about/gallery/P1290230.JPG",
-    alt: "Svartvitt foto av en upplyst restaurangentré med människor framför.",
-    caption: "Ljus i mörkret",
   },
   {
+    id: "P1290314",
     src: "/images/about/gallery/P1290314.JPG",
-    alt: "Svartvit utsikt genom en bilruta över en motorväg omgiven av skog och berg.",
-    caption: "På väg",
   },
   {
+    id: "P1300307",
     src: "/images/about/gallery/P1300307.JPG",
-    alt: "Svartvitt foto av en person som badar i en sjö, inramad av träd.",
-    caption: "En stund vid sjön",
   },
-];
+] as const;
+
+export function getPersonalPhotos(locale: Locale): GalleryImage[] {
+  return personalPhotos.map((photo) => ({
+    src: photo.src,
+    ...photoMessages[locale][photo.id],
+  }));
+}

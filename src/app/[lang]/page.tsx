@@ -22,7 +22,7 @@ export default async function Home({ params }: HomePageProps) {
     <main className="flex flex-1 flex-col">
       <HeroSection locale={lang} />
       <FeaturedProjectsSection locale={lang} />
-      <AboutSection />
+      <AboutSection locale={lang} />
       <HomeBackdrop>
         <ExperienceSection />
         <ContactSection />

@@ -1,28 +1,33 @@
 import Image from "next/image";
 import { PageContainer } from "@/components/layout/PageContainer";
-import lucasPhoto from "../../../../public/images/about/lucas-waterfall.jpg";
 import { ImageGallery } from "@/components/ui/ImageGallery";
-import { personalPhotos } from "@/features/about/data/photos";
+import { getPersonalPhotos } from "@/features/about/data/photos";
+import type { Locale } from "@/i18n/config";
+import { aboutSectionMessages } from "@/i18n/aboutSection";
+import lucasPhoto from "../../../../public/images/about/lucas-waterfall.jpg";
 
 const highlights = [
   {
-    title: "Struktur",
-    description: "Jag gillar ordning och genomtänkta lösningar.",
+    id: "structure",
     iconPath: "M4 4h6v6H4z M14 4h6v6h-6z M4 14h6v6H4z M14 14h6v6h-6z",
   },
   {
-    title: "Utveckling",
-    description: "Alltid nyfiken på att lära mig mer.",
+    id: "development",
     iconPath: "m8 7-5 5 5 5 M16 7l5 5-5 5 M14 4l-4 16",
   },
   {
-    title: "Balans",
-    description: "Teknik, natur och ett aktivt liv.",
+    id: "balance",
     iconPath: "M12 3v18 M5 7h14 M5 7l-3 7h6L5 7Z M19 7l-3 7h6l-3-7Z M8 21h8",
   },
-];
+] as const;
 
-export function AboutSection() {
+type AboutSectionProps = {
+  locale?: Locale;
+};
+
+export function AboutSection({ locale = "sv" }: AboutSectionProps) {
+  const text = aboutSectionMessages[locale];
+
   return (
     <section
       id="about"
@@ -36,7 +41,7 @@ export function AboutSection() {
           </span>
 
           <p className="text-sm font-medium uppercase tracking-widest">
-            Om mig
+            {text.sectionLabel}
           </p>
 
           <span aria-hidden="true" className="h-px w-16 bg-border" />
@@ -50,17 +55,18 @@ export function AboutSection() {
             />
 
             <ImageGallery
-              name="Genom min kamera"
-              images={personalPhotos}
-              eyebrow="Foto och fritid"
-              triggerLabel="Visa mina foton"
+              name={text.gallery.name}
+              images={getPersonalPhotos(locale)}
+              locale={locale}
+              eyebrow={text.gallery.eyebrow}
+              triggerLabel={text.gallery.triggerLabel}
               variant="photo"
               unoptimized={false}
             >
               <div className="relative aspect-4/3 overflow-hidden rounded-2xl border border-border">
                 <Image
                   src={lucasPhoto}
-                  alt="Lucas fotograferar vid ett vattenfall."
+                  alt={text.imageAlt}
                   fill
                   sizes="(min-width: 1152px) 475px, (min-width: 1024px) 42vw, (min-width: 640px) 512px, 100vw"
                   className="object-cover"
@@ -75,33 +81,26 @@ export function AboutSection() {
                 aria-hidden="true"
                 className="size-2 shrink-0 rounded-full bg-accent"
               />
-              Utvecklare · Projektbyggare · Livsnjutare
+              {text.eyebrow}
             </p>
 
             <h2
               id="about-heading"
               className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl"
             >
-              Lite mer om mig.
+              {text.heading}
             </h2>
 
             <p className="mt-5 leading-relaxed text-muted">
-              Jag heter Lucas och är frontendutvecklare med fullstackkompetens.
-              Jag gillar att bygga webbapplikationer som är användarvänliga,
-              genomtänkta och faktiskt löser riktiga problem. För mig är det
-              viktigt att funktion, design och struktur hänger ihop.
+              {text.introduction}
             </p>
 
-            <p className="mt-4 leading-relaxed text-muted">
-              Utöver att utveckla tycker jag om att vara ute i naturen, resa,
-              fotografera och spela dart – intressen som ger mig energi och
-              perspektiv.
-            </p>
+            <p className="mt-4 leading-relaxed text-muted">{text.interests}</p>
 
             <dl className="mt-8 grid gap-6 sm:grid-cols-3">
               {highlights.map((highlight) => (
                 <div
-                  key={highlight.title}
+                  key={highlight.id}
                   className="grid grid-cols-[2rem_minmax(0,1fr)] content-start items-start gap-x-3 gap-y-2"
                 >
                   <dt className="col-span-2 grid grid-cols-subgrid items-center">
@@ -123,12 +122,12 @@ export function AboutSection() {
                     </span>
 
                     <span className="font-medium text-foreground">
-                      {highlight.title}
+                      {text.highlights[highlight.id].title}
                     </span>
                   </dt>
 
                   <dd className="col-start-2 text-sm leading-relaxed text-muted">
-                    {highlight.description}
+                    {text.highlights[highlight.id].description}
                   </dd>
                 </div>
               ))}
