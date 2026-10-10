@@ -49,6 +49,10 @@ export const projectsMessages: Record<Locale, ProjectsMessages> = {
             alt: "Vyn för att skapa en dartcup i Pasd'Art.",
             caption: "Skapa en ny cup.",
           },
+          "/images/projects/pasdart/pasdart-randomize-team.png": {
+            alt: "Lagindelning i Pasd'Art med fem lottade dubbelpar och möjlighet att slumpa om eller godkänna lagen.",
+            caption: "Lotta och godkänn lagen inför cupen.",
+          },
           "/images/projects/pasdart/pasdart-groups.png": {
             alt: "Gruppspel med tabeller och matchresultat i Pasd'Art.",
             caption: "Följ gruppspelets tabeller och resultat.",
@@ -68,25 +72,37 @@ export const projectsMessages: Record<Locale, ProjectsMessages> = {
         imageAlt:
           "Samspels startsida med rubriken Mer tid för handledning. Mindre bokningskrångel.",
         gallery: {
-          "/images/projects/booking/booking-home.png": {
+          "/images/projects/booking/booking-homescreen.png": {
             alt: "Samspels startsida.",
             caption: "Startsidan — introduktion till Samspel.",
           },
           "/images/projects/booking/booking-overview.png": {
             alt: "Översikt över bokningstillfällen i Samspel.",
-            caption: "Överblick över kommande bokningstillfällen.",
+            caption: "Överblick över bokningstillfällen.",
           },
           "/images/projects/booking/booking-create.png": {
             alt: "Formulär för att skapa ett bokningstillfälle i Samspel.",
             caption: "Skapa ett nytt bokningstillfälle.",
+          },
+          "/images/projects/booking/booking-create-howitworks.png": {
+            alt: "Hjälpdialog som förklarar hur lärare hanterar bokningstillfällen i Samspel.",
+            caption: "Så fungerar Mina tillfällen.",
           },
           "/images/projects/booking/booking-participants.png": {
             alt: "Deltagarlista för ett bokningstillfälle i Samspel.",
             caption: "Se deltagare och bokade tider.",
           },
           "/images/projects/booking/booking-classes.png": {
-            alt: "Klasshantering i Samspel.",
+            alt: "Översikt över lärarens klasser i Samspel.",
             caption: "Hantera klasser.",
+          },
+          "/images/projects/booking/booking-create-class.png": {
+            alt: "Dialog för att skapa en klass med namn, klassbeteckning och beskrivning i Samspel.",
+            caption: "Skapa en ny klass.",
+          },
+          "/images/projects/booking/booking-classes-howitworks.png": {
+            alt: "Hjälpdialog som förklarar klasshantering och hur elever ansluter till klasser i Samspel.",
+            caption: "Så fungerar Mina klasser.",
           },
         },
       },
@@ -119,6 +135,10 @@ export const projectsMessages: Record<Locale, ProjectsMessages> = {
             alt: "The tournament creation view in Pasd'Art.",
             caption: "Create a new tournament.",
           },
+          "/images/projects/pasdart/pasdart-randomize-team.png": {
+            alt: "Team selection in Pasd'Art showing five randomly assigned pairs, with options to reshuffle or confirm the teams.",
+            caption: "Draw and confirm teams before the tournament.",
+          },
           "/images/projects/pasdart/pasdart-groups.png": {
             alt: "Group standings and match results in Pasd'Art.",
             caption: "Follow the group standings and results.",
@@ -138,25 +158,37 @@ export const projectsMessages: Record<Locale, ProjectsMessages> = {
         imageAlt:
           "Samspel's home page with a headline about more time for tutoring and less hassle with bookings.",
         gallery: {
-          "/images/projects/booking/booking-home.png": {
+          "/images/projects/booking/booking-homescreen.png": {
             alt: "Samspel's home page.",
             caption: "The home page — an introduction to Samspel.",
           },
           "/images/projects/booking/booking-overview.png": {
             alt: "An overview of booking sessions in Samspel.",
-            caption: "An overview of upcoming booking sessions.",
+            caption: "An overview of booking sessions.",
           },
           "/images/projects/booking/booking-create.png": {
             alt: "The form for creating a booking session in Samspel.",
             caption: "Create a new booking session.",
+          },
+          "/images/projects/booking/booking-create-howitworks.png": {
+            alt: "A help dialog explaining how teachers manage booking sessions in Samspel.",
+            caption: "How to manage booking sessions.",
           },
           "/images/projects/booking/booking-participants.png": {
             alt: "The participant list for a booking session in Samspel.",
             caption: "View participants and booked time slots.",
           },
           "/images/projects/booking/booking-classes.png": {
-            alt: "Class management in Samspel.",
+            alt: "An overview of the teacher's classes in Samspel.",
             caption: "Manage classes.",
+          },
+          "/images/projects/booking/booking-create-class.png": {
+            alt: "A dialog for creating a class with a name, class designation and description in Samspel.",
+            caption: "Create a new class.",
+          },
+          "/images/projects/booking/booking-classes-howitworks.png": {
+            alt: "A help dialog explaining class management and how students join classes in Samspel.",
+            caption: "How to manage classes.",
           },
         },
       },

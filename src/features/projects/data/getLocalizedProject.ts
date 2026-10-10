@@ -3,14 +3,11 @@ import { projectsMessages } from "@/i18n/projects";
 import type { Project } from "./projects";
 
 export function getLocalizedProject(project: Project, locale: Locale) {
-  if (project.id !== "pasdart" && project.id !== "samspel") {
-    throw new Error(`Översättningar saknas för projektet: ${project.id}`);
-  }
-
   const translation = projectsMessages[locale].items[project.id];
 
   return {
     ...project,
+    image: locale === "en" ? (project.imageEn ?? project.image) : project.image,
     category: translation.category,
     status: translation.status,
     description: translation.description,
@@ -23,7 +20,7 @@ export function getLocalizedProject(project: Project, locale: Locale) {
       }
 
       return {
-        src: image.src,
+        src: locale === "en" ? (image.srcEn ?? image.src) : image.src,
         alt: imageTranslation.alt,
         caption: imageTranslation.caption,
       };

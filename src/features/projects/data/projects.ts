@@ -1,7 +1,25 @@
+import type { StaticImageData } from "next/image";
 import pasdartHome from "../../../../public/images/projects/pasdart/pasdart-home.png";
-import bookingHome from "../../../../public/images/projects/booking/booking-home.png";
+import bookingHome from "../../../../public/images/projects/booking/booking-homescreen.png";
+import bookingHomeEnglish from "../../../../public/images/projects/booking/booking-homescreen-eng.png";
 
-export const projects = [
+export type Project = {
+  id: "pasdart" | "samspel";
+  name: string;
+  image: StaticImageData;
+  imageEn?: StaticImageData;
+  technologies: string[];
+  links: {
+    live: string;
+    github: string;
+  };
+  gallery: {
+    src: string;
+    srcEn?: string;
+  }[];
+};
+
+export const projects: Project[] = [
   {
     id: "pasdart",
     name: "Pasd'Art",
@@ -22,6 +40,9 @@ export const projects = [
         src: "/images/projects/pasdart/pasdart-create.png",
       },
       {
+        src: "/images/projects/pasdart/pasdart-randomize-team.png",
+      },
+      {
         src: "/images/projects/pasdart/pasdart-groups.png",
       },
       {
@@ -33,6 +54,7 @@ export const projects = [
     id: "samspel",
     name: "Samspel",
     image: bookingHome,
+    imageEn: bookingHomeEnglish,
     technologies: ["Next.js", "TypeScript", "Material UI", "SQLite"],
     links: {
       live: "",
@@ -40,22 +62,37 @@ export const projects = [
     },
     gallery: [
       {
-        src: "/images/projects/booking/booking-home.png",
+        src: "/images/projects/booking/booking-homescreen.png",
+        srcEn: "/images/projects/booking/booking-homescreen-eng.png",
       },
       {
         src: "/images/projects/booking/booking-overview.png",
+        srcEn: "/images/projects/booking/booking-overview-eng.png",
       },
       {
         src: "/images/projects/booking/booking-create.png",
+        srcEn: "/images/projects/booking/booking-create-eng.png",
+      },
+      {
+        src: "/images/projects/booking/booking-create-howitworks.png",
+        srcEn: "/images/projects/booking/booking-create-howitworks-eng.png",
       },
       {
         src: "/images/projects/booking/booking-participants.png",
+        srcEn: "/images/projects/booking/booking-participants-eng.png",
       },
       {
         src: "/images/projects/booking/booking-classes.png",
+        srcEn: "/images/projects/booking/booking-classes-eng.png",
+      },
+      {
+        src: "/images/projects/booking/booking-create-class.png",
+        srcEn: "/images/projects/booking/booking-create-class-eng.png",
+      },
+      {
+        src: "/images/projects/booking/booking-classes-howitworks.png",
+        srcEn: "/images/projects/booking/booking-classes-howitworks-eng.png",
       },
     ],
   },
 ];
-
-export type Project = (typeof projects)[number];
