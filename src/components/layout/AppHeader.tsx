@@ -143,7 +143,11 @@ export function AppHeader({ locale }: AppHeaderProps) {
 
               <li>
                 <a
-                  href="/documents/lucas-hansson-cv.pdf"
+                  href={
+                    locale === "en"
+                      ? "/documents/lucas-hansson-cv-en.pdf"
+                      : "/documents/lucas-hansson-cv.pdf"
+                  }
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={messages.cvLabel}
@@ -230,7 +234,11 @@ export function AppHeader({ locale }: AppHeaderProps) {
 
               <li>
                 <a
-                  href="/documents/lucas-hansson-cv.pdf"
+                  href={
+                    locale === "en"
+                      ? "/documents/lucas-hansson-cv-en.pdf"
+                      : "/documents/lucas-hansson-cv.pdf"
+                  }
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={closeMenu}

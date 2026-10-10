@@ -137,7 +137,11 @@ export function AboutPageContent({ locale = "sv" }: AboutPageContentProps) {
             </a>
 
             <a
-              href="/documents/lucas-hansson-cv.pdf"
+              href={
+                locale === "en"
+                  ? "/documents/lucas-hansson-cv-en.pdf"
+                  : "/documents/lucas-hansson-cv.pdf"
+              }
               target="_blank"
               rel="noopener noreferrer"
               aria-label={text.nextStep.cvLabel}

@@ -189,7 +189,7 @@ export const aboutMessages: Record<Locale, AboutMessages> = {
       ],
       contact: "Get in touch",
       cv: "View my CV",
-      cvLabel: "Open my Swedish CV as a PDF in a new tab",
+      cvLabel: "Open my CV as a PDF in a new tab",
     },
   },
 };

@@ -45,6 +45,6 @@ export const headerMessages: Record<Locale, HeaderMessages> = {
     mainNavigation: "Main navigation",
     mobileNavigation: "Mobile navigation",
     languageNavigation: "Choose language",
-    cvLabel: "Open my Swedish CV as a PDF in a new tab",
+    cvLabel: "Open my CV as a PDF in a new tab",
   },
 };
