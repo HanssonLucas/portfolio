@@ -4,6 +4,10 @@ import { photoMessages } from "@/i18n/photos";
 
 const personalPhotos = [
   {
+    id: "lucas-waterfall",
+    src: "/images/about/lucas-waterfall.jpg",
+  },
+  {
     id: "P1290101",
     src: "/images/about/gallery/P1290101.JPG",
   },
