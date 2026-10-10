@@ -56,7 +56,19 @@ export function HeroSection({ locale }: HeroSectionProps) {
                 className="inline-flex min-h-12 items-center justify-center gap-3 rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground transition-colors hover:bg-accent/90"
               >
                 {text.projects}
-                <span aria-hidden="true">→</span>
+                <svg
+                  aria-hidden="true"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.75"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="size-4 shrink-0"
+                >
+                  <path d="M5 12h14m-5-5 5 5-5 5" />
+                </svg>
               </a>
 
               <a

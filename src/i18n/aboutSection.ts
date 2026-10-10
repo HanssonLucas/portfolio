@@ -72,8 +72,7 @@ export const aboutSectionMessages = {
     highlights: {
       structure: {
         title: "Structure",
-        description:
-          "I like keeping things organised and thinking solutions through.",
+        description: "I value clear structure and thoughtful solutions.",
       },
       development: {
         title: "Growth",

@@ -30,7 +30,19 @@ export function ProjectDetails({
           href={`${localizedHref(locale)}#projects`}
           className="inline-flex min-h-11 items-center gap-2 rounded text-sm text-muted transition-colors hover:text-accent"
         >
-          <span aria-hidden="true">←</span>
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.75"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="size-4 shrink-0"
+          >
+            <path d="M19 12H5m5-5-5 5 5 5" />
+          </svg>
           {text.backToProjects}
         </Link>
 

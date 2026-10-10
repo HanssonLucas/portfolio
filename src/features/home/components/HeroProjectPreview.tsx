@@ -26,7 +26,7 @@ export function HeroProjectPreview({ locale }: HeroProjectPreviewProps) {
       </div>
 
       <figcaption className="mt-4 flex flex-wrap items-center justify-between gap-2 text-sm">
-        <span className="font-medium text-foreground">Pasdart</span>
+        <span className="font-medium text-foreground">Pasd&apos;Art</span>
         <span className="text-muted">{text.status}</span>
       </figcaption>
     </figure>
