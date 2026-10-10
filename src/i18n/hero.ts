@@ -10,6 +10,8 @@ type HeroMessages = {
   preview: {
     imageAlt: string;
     status: string;
+    description: string;
+    readMore: string;
   };
 };
 
@@ -25,6 +27,8 @@ export const heroMessages = {
     preview: {
       imageAlt: "Pasdarts cupvy med semifinaler, final och matchresultat.",
       status: "Under utveckling",
+      description: "Dartcuper från laglottning till final.",
+      readMore: "Om projektet",
     },
   },
   en: {
@@ -39,6 +43,8 @@ export const heroMessages = {
       imageAlt:
         "Pasdart's tournament view showing semifinals, the final and match results.",
       status: "In development",
+      description: "Dart tournaments from team draws to the final.",
+      readMore: "About the project",
     },
   },
 } satisfies Record<Locale, HeroMessages>;

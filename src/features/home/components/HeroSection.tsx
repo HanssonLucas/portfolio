@@ -32,8 +32,8 @@ export function HeroSection({ locale }: HeroSectionProps) {
       </div>
 
       <PageContainer>
-        <div className="relative z-10 grid gap-12 lg:grid-cols-2 lg:items-center">
-          <div>
+        <div className="relative z-10 grid gap-12 lg:grid-cols-2 lg:items-stretch xl:-mr-16 xl:gap-24 2xl:-mr-36 2xl:gap-28 2xl:grid-cols-[minmax(0,1fr)_minmax(0,1.18fr)]">
+          <div className="min-w-0">
             <p className="text-sm font-medium uppercase tracking-widest text-accent">
               {text.eyebrow}
             </p>
@@ -46,7 +46,7 @@ export function HeroSection({ locale }: HeroSectionProps) {
               <span className="text-accent">{text.headingAccent}</span>
             </h1>
 
-            <p className="mt-6 max-w-lg text-base leading-relaxed text-muted sm:text-lg">
+            <p className="mt-6 max-w-lg text-base leading-relaxed text-muted sm:text-lg lg:min-h-[6.5em]">
               {text.description}
             </p>
 
@@ -56,6 +56,7 @@ export function HeroSection({ locale }: HeroSectionProps) {
                 className="inline-flex min-h-12 items-center justify-center gap-3 rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground transition-colors hover:bg-accent/90"
               >
                 {text.projects}
+
                 <svg
                   aria-hidden="true"
                   focusable="false"
@@ -80,7 +81,7 @@ export function HeroSection({ locale }: HeroSectionProps) {
             </div>
           </div>
 
-          <div className="relative isolate min-w-0">
+          <div className="relative isolate min-w-0 lg:mt-12">
             <div className={styles.glow} aria-hidden="true" />
             <HeroProjectPreview locale={locale} />
           </div>
