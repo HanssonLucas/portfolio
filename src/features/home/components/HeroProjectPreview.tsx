@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { Locale } from "@/i18n/config";
 import { heroMessages } from "@/i18n/hero";
 import pasdartPreview from "../../../../public/images/projects/pasdart/pasdart-hero.png";
+import Link from "next/link";
 
 type HeroProjectPreviewProps = {
   locale: Locale;
@@ -31,9 +32,26 @@ export function HeroProjectPreview({ locale }: HeroProjectPreviewProps) {
       </div>
 
       <figcaption className="flex min-h-12 shrink-0 flex-wrap items-center justify-between gap-x-4 gap-y-1 px-4 py-3 sm:px-5">
-        <span className="text-sm font-semibold tracking-tight text-foreground">
+        <Link
+          href={`/${locale}/project/pasdart`}
+          aria-label={`${text.readMore} – Pasd'Art`}
+          className="inline-flex items-center gap-2 rounded text-sm font-semibold tracking-tight text-foreground transition-colors hover:text-accent"
+        >
           Pasd&apos;Art
-        </span>
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.75"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="size-4 text-accent"
+          >
+            <path d="M5 12h14m-5-5 5 5-5 5" />
+          </svg>
+        </Link>
 
         <span className="inline-flex items-center gap-2 text-xs font-medium text-muted">
           <span
