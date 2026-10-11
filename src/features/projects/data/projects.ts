@@ -66,32 +66,32 @@ export const projects: Project[] = [
         srcEn: "/images/projects/booking/booking-homescreen-eng.png",
       },
       {
-        src: "/images/projects/booking/booking-overview.png",
-        srcEn: "/images/projects/booking/booking-overview-eng.png",
-      },
-      {
-        src: "/images/projects/booking/booking-create.png",
-        srcEn: "/images/projects/booking/booking-create-eng.png",
-      },
-      {
-        src: "/images/projects/booking/booking-create-howitworks.png",
-        srcEn: "/images/projects/booking/booking-create-howitworks-eng.png",
-      },
-      {
-        src: "/images/projects/booking/booking-participants.png",
-        srcEn: "/images/projects/booking/booking-participants-eng.png",
-      },
-      {
         src: "/images/projects/booking/booking-classes.png",
         srcEn: "/images/projects/booking/booking-classes-eng.png",
+      },
+      {
+        src: "/images/projects/booking/booking-classes-howitworks.png",
+        srcEn: "/images/projects/booking/booking-classes-howitworks-eng.png",
       },
       {
         src: "/images/projects/booking/booking-create-class.png",
         srcEn: "/images/projects/booking/booking-create-class-eng.png",
       },
       {
-        src: "/images/projects/booking/booking-classes-howitworks.png",
-        srcEn: "/images/projects/booking/booking-classes-howitworks-eng.png",
+        src: "/images/projects/booking/booking-overview.png",
+        srcEn: "/images/projects/booking/booking-overview-eng.png",
+      },
+      {
+        src: "/images/projects/booking/booking-create-howitworks.png",
+        srcEn: "/images/projects/booking/booking-create-howitworks-eng.png",
+      },
+      {
+        src: "/images/projects/booking/booking-create.png",
+        srcEn: "/images/projects/booking/booking-create-eng.png",
+      },
+      {
+        src: "/images/projects/booking/booking-participants.png",
+        srcEn: "/images/projects/booking/booking-participants-eng.png",
       },
     ],
   },
