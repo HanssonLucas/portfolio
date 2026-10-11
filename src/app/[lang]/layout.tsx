@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { AppHeader } from "@/components/layout/AppHeader";
 import { isLocale, locales } from "@/i18n/config";
 import "../globals.css";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -88,6 +89,7 @@ export default async function RootLayout({
       <body className="flex min-h-full flex-col">
         <AppHeader locale={lang} />
         {children}
+        <Analytics />
       </body>
     </html>
   );
