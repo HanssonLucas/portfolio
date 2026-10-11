@@ -17,9 +17,31 @@ export async function generateMetadata({
     notFound();
   }
 
+  const { title, description } = aboutMessages[lang].metadata;
+
+  const sharingImage = {
+    url: "/images/og/portfolio-og.png",
+    alt: "Lucas Hansson – Frontend Developer · Full-stack skills",
+  };
+
   return {
-    title: aboutMessages[lang].metadata.title,
-    description: aboutMessages[lang].metadata.description,
+    title,
+    description,
+    openGraph: {
+      type: "website",
+      siteName: "Lucas Hansson",
+      locale: lang === "sv" ? "sv_SE" : "en_GB",
+      url: `/${lang}/about`,
+      title,
+      description,
+      images: [sharingImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [sharingImage],
+    },
   };
 }
 

@@ -37,10 +37,31 @@ export async function generateMetadata({
   }
 
   const text = projectsMessages[lang].items[project.id];
+  const title = `${project.name} | Lucas Hansson`;
+
+  const sharingImage = {
+    url: "/images/og/portfolio-og.png",
+    alt: "Lucas Hansson – Frontend Developer · Full-stack skills",
+  };
 
   return {
-    title: `${project.name} | Lucas Hansson`,
+    title,
     description: text.description,
+    openGraph: {
+      type: "website",
+      siteName: "Lucas Hansson",
+      locale: lang === "sv" ? "sv_SE" : "en_GB",
+      url: `/${lang}/project/${project.id}`,
+      title,
+      description: text.description,
+      images: [sharingImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: text.description,
+      images: [sharingImage],
+    },
   };
 }
 

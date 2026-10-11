@@ -34,15 +34,39 @@ export async function generateMetadata({
     notFound();
   }
 
+  const title =
+    lang === "sv"
+      ? "Lucas Hansson | Frontendutvecklare"
+      : "Lucas Hansson | Frontend Developer";
+
+  const description =
+    lang === "sv"
+      ? "Frontendutvecklare med fullstackkompetens. Utforska mina projekt och lär känna mig."
+      : "Frontend developer with full-stack skills. Explore my projects and get to know me.";
+
+  const sharingImage = {
+    url: "/images/og/portfolio-og.png",
+    alt: "Lucas Hansson – Frontend Developer · Full-stack skills",
+  };
+
   return {
-    title:
-      lang === "sv"
-        ? "Lucas Hansson | Frontendutvecklare"
-        : "Lucas Hansson | Frontend Developer",
-    description:
-      lang === "sv"
-        ? "Frontendutvecklare med fullstackkompetens. Utforska mina projekt och läs om min bakgrund."
-        : "Frontend developer with full-stack skills. Explore my projects and learn about my background.",
+    metadataBase: new URL("https://lucas-hansson.vercel.app"),
+    title,
+    description,
+    openGraph: {
+      type: "website",
+      siteName: "Lucas Hansson",
+      locale: lang === "sv" ? "sv_SE" : "en_GB",
+      title,
+      description,
+      images: [sharingImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [sharingImage],
+    },
   };
 }
 
