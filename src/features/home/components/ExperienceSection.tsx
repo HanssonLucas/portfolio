@@ -5,12 +5,12 @@ import { experienceMessages } from "@/i18n/experience";
 
 const experiences = [
   {
-    id: "hitract",
-    technologies: ["React", "Next.js", "TypeScript", "Material UI"],
-  },
-  {
     id: "education",
     technologies: ["JavaScript", "TypeScript", "React", "C# / .NET"],
+  },
+  {
+    id: "hitract",
+    technologies: ["React", "Next.js", "TypeScript", "Material UI"],
   },
   {
     id: "personal-projects",
