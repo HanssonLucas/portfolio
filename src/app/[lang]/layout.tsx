@@ -51,7 +51,7 @@ export async function generateMetadata({
   };
 
   return {
-    metadataBase: new URL("https://lucas-hansson.vercel.app"),
+    metadataBase: new URL("https://lucashansson.com"),
     title,
     description,
     openGraph: {
